@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 @import "tailwindcss";
 @plugin "daisyui" {
@@ -44,8 +44,6 @@
   box-shadow: 0 0 0 3px rgba(14, 165, 164, 0.3);
 }
 
-
-
 /* .my-btn-soft {
   background-color: #059669;
   border: none;
@@ -81,9 +79,17 @@
   font-weight: 600;
   border: 1px solid #e5e7eb;
   border-radius: 20px;
-  background: #FAFAF9;
+  background: #fafaf9;
   transition: all 0.2s ease-in-out;
 }
 .navbar .active:hover {
-  box-shadow: 0 2px 6px rgba(5,150,105,0.15);
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.15);
+}
+
+
+.small-swal-popup {
+  width: 250px !important;
+  height: 120px !important;
+  font-size: 8px !important;
+  padding: 6px !important;
 }
