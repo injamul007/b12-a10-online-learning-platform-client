@@ -7,7 +7,7 @@ import { FaUser } from "react-icons/fa6";
 import { TiContacts } from "react-icons/ti";
 import { MdDashboard } from "react-icons/md";
 import MyContainer from "../MyContainer/MyContainer";
-import navLogo from "../../assets/website_logo.png"
+import navLogo from "../../assets/website_logo.png";
 
 const Navbar = () => {
   const links = (
@@ -65,11 +65,18 @@ const Navbar = () => {
               </ul>
             </div>
             <Link
-              to={"/"}
-              className="flex items-center gap-1 text-xl font-bold text-[#059669]"
+              to="/"
+              className="flex items-center gap-1 font-extrabold text-2xl sm:text-3xl group select-none"
             >
-            <img className="w-8" src={navLogo} alt="navLogo" /> 
-            <p className="text-[#059669]">Skilled<span className="text-[#F97316]">Hub</span></p>
+              <p className="text-[#059669] group-hover:text-[#0EA5A4] transition-colors duration-300 flex items-center">
+                <img className="w-8" src={navLogo} alt="navLogo" />
+                Skilled
+                <span className="text-[#F97316] relative transition-all duration-300 group-hover:scale-110">
+                  Hub
+                  {/* subtle glowing underline */}
+                  <span className="absolute left-0 bottom-0 w-full h-[3px] bg-[#F97316] opacity-0 group-hover:opacity-100 rounded-full transition-opacity duration-300"></span>
+                </span>
+              </p>
             </Link>
           </div>
           <div className="navbar-center hidden md:flex">
