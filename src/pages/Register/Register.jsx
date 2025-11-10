@@ -219,7 +219,7 @@ const Register = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium">Photo</label>
+                <label className="block text-sm font-medium">PhotoURL</label>
                 <input
                   type="text"
                   name="photo"

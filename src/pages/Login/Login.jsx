@@ -172,7 +172,7 @@ const Login = () => {
               Welcome Back Learners!
             </h1>
             <p className="mt-4 text-lg text-white">
-              Login to continue your journey. Manage your account, explore new
+              Login to continue your learning journey. Manage your account, explore new
               Courses, and more.
             </p>
           </div>
