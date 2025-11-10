@@ -7,7 +7,7 @@ import { FaUser } from "react-icons/fa6";
 import { TiContacts } from "react-icons/ti";
 import { MdDashboard } from "react-icons/md";
 import MyContainer from "../MyContainer/MyContainer";
-import navLogo from "../../assets/website_logo.png";
+import navLogo from "../../assets/websiteLogo.png";
 
 const Navbar = () => {
   const links = (
