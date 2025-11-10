@@ -1,42 +1,68 @@
 import React, { use, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
-import { FaEye } from "react-icons/fa";
-import { IoEyeOff } from "react-icons/io5";
 import MyContainer from "../../components/MyContainer/MyContainer";
+import { FaEye } from "react-icons/fa6";
+import { IoEyeOff } from "react-icons/io5";
+import { Link, Navigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
-const Login = () => {
+const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  const { setUser, setLoading, loginUserFunc, googleSignInFunc } =
-    use(AuthContext);
+  const {
+    user,
+    setUser,
+    setLoading,
+    createUserFunc,
+    updateProfileFunc,
+    googleSignInFunc,
+  } = use(AuthContext);
 
-  const handleLogin = (e) => {
+  if (user) {
+    return <Navigate to={"/"}></Navigate>;
+  }
+
+  const handleRegister = (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    const form = e.target;
+    const displayName = form.name.value;
+    const photoURL = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
 
-    loginUserFunc(email, password)
+    const passwordPattern =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}:;<>,.?~|/-]).{6,}$/;
+
+    if (!passwordPattern.test(password)) {
+      toast.error(
+        "Password must be at least 6 characters long, include one uppercase letter, one lowercase letter, and one special character."
+      );
+      return;
+    }
+
+    createUserFunc(email, password)
       .then((result) => {
         const userData = result.user;
-        setLoading(false);
-        setUser(userData);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Login Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-          customClass: {
-            popup: "small-swal-popup",
-          },
-        });
-        e.target.reset();
-        navigate(`${location.state ? location.state : "/"}`);
+        updateProfileFunc(displayName, photoURL)
+          .then(() => {
+            setLoading(false);
+            setUser(userData);
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Register Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: "small-swal-popup",
+              },
+            });
+            e.target.reset();
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          });
       })
       .catch((error) => {
         if (error.code === "auth/invalid-credential") {
@@ -91,7 +117,7 @@ const Login = () => {
       });
   };
 
-  const handleGoogleSignin = () => {
+  const handleGoogleSignUp = () => {
     googleSignInFunc()
       .then((result) => {
         const userData = result.user;
@@ -100,14 +126,13 @@ const Login = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Google Login Successful",
+          title: "Google Sign Up Successful",
           showConfirmButton: false,
           timer: 1500,
           customClass: {
             popup: "small-swal-popup",
           },
         });
-        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         if (error.code === "auth/invalid-credential") {
@@ -163,74 +188,82 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-linear-to-br from-[#059669] to-[#0ea5a4]">
+    <div className="flex items-center justify-center bg-linear-to-br from-[#F97316] to-[#0EA5A4]">
       <MyContainer>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 p-6 lg:p-10 text-white">
           {/* Left section */}
           <div className="max-w-lg text-center lg:text-left">
             <h1 className="lg:text-4xl text-3xl font-extrabold">
-              Welcome Back Learners!
+              Create Your Account
             </h1>
-            <p className="mt-4 text-lg text-white">
-              Login to continue your journey. Manage your account, explore new
-              Courses, and more.
+            <p className="mt-4 text-lg text-white/80 leading-relaxed">
+              Join our SkilledHub and unlock exclusive courses. Your learning
+              journey begins here!
             </p>
           </div>
 
-          {/* Login card */}
-          <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8 relative z-50">
-            <form onSubmit={handleLogin} className="space-y-[18px]">
+          {/* Register card */}
+          <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-7">
+            <form onSubmit={handleRegister} className="space-y-3">
               <h2 className="text-2xl font-semibold mb-2 text-center text-white">
-                Login Now!
+                Register Here!
               </h2>
 
               <div>
-                <label className="block text-sm mb-1">Email</label>
+                <label className="block text-sm font-medium">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium">Photo</label>
+                <input
+                  type="text"
+                  name="photo"
+                  placeholder="Your photo URL here"
+                  className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm">Email</label>
                 <input
                   type="email"
                   name="email"
-                  // ref={emailRef}
-                  // value={email}
-                  // onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="example@email.com"
-                  className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                  className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-400"
                 />
               </div>
 
               <div className="relative">
-                <label className="block text-sm mb-1">Password</label>
+                <label className="block text-sm">Password</label>
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Your Password"
-                  className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                  className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-400"
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2 top-9 cursor-pointer z-50"
+                  className="absolute right-2 top-8 cursor-pointer z-50"
                 >
                   {showPassword ? <FaEye /> : <IoEyeOff />}
                 </span>
               </div>
 
               <button
-                // onClick={handleResetPassword}
-                className="hover:underline cursor-pointer text-xs"
-                type="button"
-              >
-                Forget password?
-              </button>
-
-              <button
                 type="submit"
                 className="my-btn w-full cursor-pointer active:scale-105"
               >
-                Login
+                Register
               </button>
 
               {/* Divider */}
-              <div className="flex items-center justify-center gap-2 my-2">
+              <div className="flex items-center justify-center gap-2">
                 <div className="h-px w-16 bg-white/30"></div>
                 <span className="text-sm text-white/70">or continue</span>
                 <div className="h-px w-16 bg-white/30"></div>
@@ -239,7 +272,7 @@ const Login = () => {
               {/* Google Signin */}
               <button
                 type="button"
-                onClick={handleGoogleSignin}
+                onClick={handleGoogleSignUp}
                 className="flex items-center justify-center gap-3 bg-white text-gray-800 px-5 py-2 rounded-lg w-full font-semibold hover:bg-gray-200 transition-colors cursor-pointer"
               >
                 <img
@@ -247,16 +280,16 @@ const Login = () => {
                   alt="google"
                   className="w-5 h-5"
                 />
-                Login with Google
+                Sign up with Google
               </button>
 
               <p className="text-center text-sm text-white/80 mt-3">
-                New to our Website? Please{" "}
+                Already have an account? Please{" "}
                 <Link
-                  to="/register"
+                  to="/login"
                   className="text-emerald-900 hover:text-white underline"
                 >
-                  Register
+                  Login
                 </Link>
               </p>
             </form>
@@ -267,4 +300,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

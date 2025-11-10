@@ -1,7 +1,6 @@
 import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import { GoHomeFill } from "react-icons/go";
-// import { ImBoxAdd } from "react-icons/im";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
 import { FaUser } from "react-icons/fa6";
 import { TiContacts } from "react-icons/ti";
@@ -11,7 +10,7 @@ import navLogo from "../../assets/websiteLogo.png";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { ClockLoader } from 'react-spinners';
+import { ClockLoader } from "react-spinners";
 
 const Navbar = () => {
   const { user, setUser, loading, logOutUserFunc } = use(AuthContext);
@@ -59,7 +58,7 @@ const Navbar = () => {
   return (
     <div className="navbar shadow-sm glass-card">
       <MyContainer>
-        <div className="flex justify-between items-center py-0 min-h-0 z-1">
+        <div className="flex justify-between items-center">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -85,7 +84,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-fit p-2 shadow absolute"
               >
                 {links}
               </ul>
@@ -137,29 +136,11 @@ const Navbar = () => {
                     <li className="text-sm font-bold">{user.displayName}</li>
                     <li className="text-xs">{user.email}</li>
                   </div>
-                  <li className="mt-3">
+                  <li className="my-2">
                     <NavLink to={"/profile"}>
                       <FaUser /> Profile
                     </NavLink>
                   </li>
-                  {/* <li>
-              <NavLink to={"/my-models"}>
-                <IoLogoModelS /> My Models
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/my-downloads"}>
-                <IoLogoModelS /> My Downloads
-              </NavLink>
-            </li> */}
-                  {/* <div className="my-1 ml-2">
-                <input
-                  onChange={(e) => handleTheme(e.target.checked)}
-                  type="checkbox"
-                  defaultChecked={localStorage.getItem("theme") === "dark"}
-                  className="toggle"
-                />
-              </div> */}
                   <li>
                     <button
                       onClick={handleLogOutUser}
