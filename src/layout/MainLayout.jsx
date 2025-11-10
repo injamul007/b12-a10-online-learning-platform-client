@@ -1,6 +1,7 @@
-import React from 'react';
-import Navbar from '../components/Navbar/Navbar';
-import { Outlet } from 'react-router';
+import React from "react";
+import Navbar from "../components/Navbar/Navbar";
+import { Outlet } from "react-router";
+import MyContainer from "../components/MyContainer/MyContainer";
 
 const MainLayout = () => {
   return (
@@ -9,11 +10,11 @@ const MainLayout = () => {
         <Navbar></Navbar>
       </nav>
       <main>
-        <Outlet></Outlet>
+        <MyContainer>
+          <Outlet></Outlet>
+        </MyContainer>
       </main>
-      <footer>
-        
-      </footer>
+      <footer></footer>
     </div>
   );
 };
