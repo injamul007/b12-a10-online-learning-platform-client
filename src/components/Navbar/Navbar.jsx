@@ -11,6 +11,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { ClockLoader } from "react-spinners";
+import { IoPersonAdd } from 'react-icons/io5';
 
 const Navbar = () => {
   const { user, setUser, loading, logOutUserFunc } = use(AuthContext);
@@ -58,7 +59,7 @@ const Navbar = () => {
   return (
     <div className="navbar shadow-sm glass-card">
       <MyContainer>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center py-1">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -152,10 +153,16 @@ const Navbar = () => {
                 </ul>
               </div>
             ) : (
-              <Link to={"login"} className="btn btn-sm my-btn">
+              <>
+                <Link to={"/login"} className="btn btn-sm my-btn">
                 {" "}
                 <IoLogIn /> Login
-              </Link>
+                </Link>
+                <Link to={"/register"} className="btn btn-sm bg-[#F97316] text-white border-2 border-[#F97316] hover:bg-[#059669] hover:border-[#059669] duration-200 hover:-translate-y-px transition-all hidden lg:flex">
+                {" "}
+                <IoPersonAdd /> Register 
+                </Link>
+              </>
             )}
           </div>
         </div>
