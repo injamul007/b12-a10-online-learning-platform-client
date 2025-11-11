@@ -4,12 +4,14 @@ import Home from "../pages/Home/Home";
 import Courses from "../pages/Courses/Courses";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import ErrorPage from "../pages/Error404Page/ErrorPage";
 
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
