@@ -1,5 +1,5 @@
-import React, { use } from "react";
-import { Link, NavLink } from "react-router";
+import React, { use, useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router";
 import { GoHomeFill } from "react-icons/go";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
 import { FaUser } from "react-icons/fa6";
@@ -11,10 +11,12 @@ import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { ClockLoader } from "react-spinners";
-import { IoPersonAdd } from 'react-icons/io5';
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, setUser, loading, logOutUserFunc } = use(AuthContext);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const navigate = useNavigate();
   const links = (
     <>
       <li>
@@ -36,6 +38,16 @@ const Navbar = () => {
     </>
   );
 
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
   const handleLogOutUser = () => {
     logOutUserFunc()
       .then(() => {
@@ -50,6 +62,7 @@ const Navbar = () => {
           },
         });
         setUser(null);
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error.message);
@@ -109,6 +122,23 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1 gap-10">{links}</ul>
           </div>
           <div className="navbar-end gap-3">
+            <div>
+              {/* daisyUi swap theme */}
+              <label className="swap swap-rotate">
+                <input
+                  type="checkbox"
+                  checked={theme === "dark"}
+                  onChange={(e) => handleTheme(e.target.checked)}
+                  aria-label="Toggle theme"
+                />
+
+                {/* swap-on (dark mode) */}
+                <FaMoon className="swap-on w-6 h-6" />
+
+                {/* swap-off (light mode) */}
+                <FaSun className="swap-off w-6 h-6" />
+              </label>
+            </div>
             {loading ? (
               <ClockLoader color="#059669" size={34} />
             ) : user ? (
@@ -155,12 +185,8 @@ const Navbar = () => {
             ) : (
               <>
                 <Link to={"/login"} className="btn btn-sm my-btn">
-                {" "}
-                <IoLogIn /> Login
-                </Link>
-                <Link to={"/register"} className="btn btn-sm bg-[#F97316] text-white border-2 border-[#F97316] hover:bg-[#059669] hover:border-[#059669] duration-200 hover:-translate-y-px transition-all hidden lg:flex">
-                {" "}
-                <IoPersonAdd /> Register 
+                  {" "}
+                  <IoLogIn /> Login
                 </Link>
               </>
             )}
