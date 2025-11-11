@@ -1,7 +1,10 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 
 const Banner = () => {
+  const { user} = use(AuthContext);
+
   const slides = [
     {
       img: "https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif",
@@ -34,28 +37,33 @@ const Banner = () => {
             <div className="px-6 flex flex-col-reverse lg:flex-row items-center gap-10">
               {/* Left Text */}
               <div className="flex-1 text-center lg:text-left">
-                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-center">
                   Empower Your Learning Journey with{" "}
                   <span className="text-[#f97416]">SkilledHub</span>
                 </h1>
-                <p className="text-lg text-white/80 mb-6">
+                <p className="text-lg text-center text-white/80 mb-6">
                   Discover expert-led online courses in technology, design, and
                   business. Start learning today and shape your future with
                   confidence.
                 </p>
-                <div className="flex justify-center lg:justify-start gap-4">
+                <div className="flex justify-center gap-4">
                   <Link
                     to="/courses"
                     className="my-btn bg-[#059669] hover:bg-[#F97316] transition-all"
                   >
                     Explore Courses
                   </Link>
-                  <Link
-                    to="/register"
-                    className="my-btn bg-[#F97316] border-none hover:bg-[#059669]"
-                  >
-                    Join Now
-                  </Link>
+                  {/* conditional join btn depend on user state */}
+                  {user && user.email ? (
+                    ""
+                  ) : (
+                    <Link
+                      to="/register"
+                      className="my-btn bg-[#F97316] border-none hover:bg-[#059669]"
+                    >
+                      Join Now
+                    </Link>
+                  )}
                 </div>
               </div>
 
