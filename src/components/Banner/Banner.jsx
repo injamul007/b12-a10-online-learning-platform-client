@@ -1,9 +1,10 @@
 import React, { use } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+import MyContainer from "../MyContainer/MyContainer";
 
 const Banner = () => {
-  const { user} = use(AuthContext);
+  const { user } = use(AuthContext);
 
   const slides = [
     {
@@ -34,48 +35,50 @@ const Banner = () => {
         >
           {/* Banner content */}
           <div className="bg-linear-to-br from-[#059669] to-[#0EA5A4] text-white py-20">
-            <div className="px-6 flex flex-col-reverse lg:flex-row items-center gap-10">
-              {/* Left Text */}
-              <div className="flex-1 text-center lg:text-left">
-                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-center">
-                  Empower Your Learning Journey with{" "}
-                  <span className="text-[#f97416]">SkilledHub</span>
-                </h1>
-                <p className="text-lg text-center text-white/80 mb-6">
-                  Discover expert-led online courses in technology, design, and
-                  business. Start learning today and shape your future with
-                  confidence.
-                </p>
-                <div className="flex justify-center gap-4">
-                  <Link
-                    to="/courses"
-                    className="my-btn bg-[#059669] hover:bg-[#F97316] transition-all"
-                  >
-                    Explore Courses
-                  </Link>
-                  {/* conditional join btn depend on user state */}
-                  {user && user.email ? (
-                    ""
-                  ) : (
+            <MyContainer>
+              <div className="px-6 flex flex-col-reverse lg:flex-row items-center gap-10">
+                {/* Left Text */}
+                <div className="flex-1 text-center lg:text-left">
+                  <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-center">
+                    Empower Your Learning Journey with{" "}
+                    <span className="text-[#f97416]">SkilledHub</span>
+                  </h1>
+                  <p className="text-lg text-center text-white/80 mb-6">
+                    Discover expert-led online courses in technology, design,
+                    and business. Start learning today and shape your future
+                    with confidence.
+                  </p>
+                  <div className="flex justify-center gap-4">
                     <Link
-                      to="/register"
-                      className="my-btn bg-[#F97316] border-none hover:bg-[#059669]"
+                      to="/courses"
+                      className="my-btn bg-[#059669] hover:bg-[#F97316] transition-all"
                     >
-                      Join Now
+                      Explore Courses
                     </Link>
-                  )}
+                    {/* conditional join btn depend on user state */}
+                    {user && user.email ? (
+                      ""
+                    ) : (
+                      <Link
+                        to="/register"
+                        className="my-btn bg-[#F97316] border-none hover:bg-[#059669]"
+                      >
+                        Join Now
+                      </Link>
+                    )}
+                  </div>
+                </div>
+
+                {/* Right Image */}
+                <div className="flex-1 flex justify-center">
+                  <img
+                    src={slide.img}
+                    alt={slide.tag}
+                    className="w-3/4 h-96 lg:w-full rounded-xl"
+                  />
                 </div>
               </div>
-
-              {/* Right Image */}
-              <div className="flex-1 flex justify-center">
-                <img
-                  src={slide.img}
-                  alt={slide.tag}
-                  className="w-3/4 h-96 lg:w-full rounded-xl"
-                />
-              </div>
-            </div>
+            </MyContainer>
           </div>
 
           {/* Carousel navigation */}
