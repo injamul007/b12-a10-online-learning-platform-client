@@ -133,10 +133,10 @@ const Navbar = () => {
                 />
 
                 {/* swap-on (dark mode) */}
-                <FaMoon className="swap-on w-6 h-6" />
+                <FaSun className="swap-on w-6 h-6" />
 
                 {/* swap-off (light mode) */}
-                <FaSun className="swap-off w-6 h-6" />
+                <FaMoon className="swap-off w-6 h-6" />
               </label>
             </div>
             {loading ? (
