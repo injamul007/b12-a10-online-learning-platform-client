@@ -49,20 +49,14 @@ const Banner = () => {
                     with confidence.
                   </p>
                   <div className="flex justify-center gap-4">
-                    <Link
-                      to="/courses"
-                      className="my-btn bg-[#059669] hover:bg-[#F97316] transition-all"
-                    >
+                    <Link to="/courses" className="my-btn transition-all">
                       Explore Courses
                     </Link>
                     {/* conditional join btn depend on user state */}
                     {user && user.email ? (
                       ""
                     ) : (
-                      <Link
-                        to="/register"
-                        className="my-btn bg-[#F97316] border-none hover:bg-[#059669]"
-                      >
+                      <Link to="/register" className="my-btn">
                         Join Now
                       </Link>
                     )}
