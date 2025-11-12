@@ -10,18 +10,30 @@ const Banner = () => {
     {
       img: "https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif",
       tag: "Full Stack",
+      title: "Build Dynamic Web Apps with MERN Stack",
+      subtitle:
+        "Master MongoDB, Express, React & Node.js — your complete path to becoming a full stack pro.",
     },
     {
       img: "https://mir-s3-cdn-cf.behance.net/project_modules/source/65626933112811.56a01870441f4.gif",
       tag: "Design",
+      title: "Design That Inspires, Create That Matters",
+      subtitle:
+        "Learn UI/UX design from industry experts using Figma, Adobe XD, and design psychology.",
     },
     {
       img: "https://classroomclipart.com/image/content8/79386/thumb.gif",
       tag: "Data Science",
+      title: "Turn Data into Insights with Python",
+      subtitle:
+        "Explore data analytics, visualization, and AI using Python, Pandas, and TensorFlow.",
     },
     {
       img: "https://digitalscholar.in/wp-content/uploads/2022/06/online-learning.gif",
       tag: "AI & ML",
+      title: "Shape the Future with Artificial Intelligence",
+      subtitle:
+        "Learn machine learning, neural networks, and automation tools to innovate smarter solutions.",
     },
   ];
 
@@ -40,13 +52,10 @@ const Banner = () => {
                 {/* Left Text */}
                 <div className="flex-1 text-center lg:text-left">
                   <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-center">
-                    Empower Your Learning Journey with{" "}
-                    <span className="text-secondary">SkilledHub</span>
+                    {slide.title}{" "}
                   </h1>
                   <p className="text-lg text-center text-white/80 mb-6">
-                    Discover expert-led online courses in technology, design,
-                    and business. Start learning today and shape your future
-                    with confidence.
+                    {slide.subtitle}
                   </p>
                   <div className="flex justify-center gap-4">
                     <Link to="/courses" className="my-btn transition-all">

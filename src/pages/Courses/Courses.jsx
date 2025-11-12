@@ -4,6 +4,7 @@ import useAxios from "../../hook/useAxios";
 import { useState } from "react";
 import CourseCard from "../../components/courseCard/CourseCard";
 import MyContainer from "../../components/MyContainer/MyContainer";
+import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
 
 const Courses = () => {
   const axiosInstance = useAxios();
@@ -16,7 +17,6 @@ const Courses = () => {
       axiosInstance
         .get("/courses")
         .then((data) => {
-          console.log(data.data);
           setCoursesData(data.data);
         })
         .catch((error) => {
@@ -28,15 +28,15 @@ const Courses = () => {
     }, 1000);
   }, [axiosInstance]);
 
-  if (loading) return <p className="text-3xl">Loading...</p>;
+  if (loading) return <LoadSpinner></LoadSpinner>
 
   return (
     <div>
       <MyContainer>
-        <h2 className="text-2xl text-center font-bold mt-6">All Courses</h2>
+        <h2 className="text-3xl text-center font-bold mt-6">All Courses</h2>
         <p className="text-center mb-10">Explore Latest Courses</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-16">
           {coursesData.map((course) => (
             <CourseCard key={course._id} course={course}></CourseCard>
           ))}
