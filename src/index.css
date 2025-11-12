@@ -46,28 +46,6 @@
   box-shadow: 0 0 0 3px rgba(14, 165, 164, 0.3);
 }
 
-/* .my-btn-soft {
-  background-color: #059669;
-  border: none;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: all 0.25s ease;
-}
-
-.my-btn:hover {
-  background: linear-gradient(to right, #059669, #F97316);
-  border-color: transparent;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
-  transform: translateY(-1px);
-}
-
-.my-btn:active {
-  transform: scale(0.97);
-} */
-
 .glass-card {
   background: rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(6px);

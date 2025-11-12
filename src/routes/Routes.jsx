@@ -5,6 +5,11 @@ import Courses from "../pages/Courses/Courses";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import ErrorPage from "../pages/Error404Page/ErrorPage";
+import DashboardLayout from "../layout/DashboardLayout";
+import MyEnrolledCourse from "../pages/MyEnrolledCourse/MyEnrolledCourse";
+import ErrorPageDashboard from "../pages/Error404PageDashboard/ErrorPageDashboard";
+import PrivateRoute from "./PrivateRoute";
+import Settings from "../pages/Settings/Settings";
 
 
 const router = createBrowserRouter([
@@ -32,6 +37,20 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children: [
+      {
+        path: '/dashboard/my-enrolled',
+        element: <PrivateRoute><MyEnrolledCourse></MyEnrolledCourse></PrivateRoute>
+      },
+      {
+        path: '/dashboard/settings',
+        element: <Settings></Settings>
       }
     ]
   }
