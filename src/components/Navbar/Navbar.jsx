@@ -107,10 +107,10 @@ const Navbar = () => {
               to="/"
               className="flex items-center gap-1 font-extrabold text-2xl sm:text-3xl group select-none"
             >
-              <p className="text-[#059669] group-hover:text-[#0EA5A4] transition-colors duration-300 flex items-center">
+              <p className="text-primary group-hover:text-accent transition-colors duration-300 flex items-center text-xl md:text-2xl lg:text-3xl">
                 <img className="w-8" src={navLogo} alt="navLogo" />
                 Skilled
-                <span className="text-[#F97316] relative transition-all duration-300 group-hover:scale-110">
+                <span className="text-secondary relative transition-all duration-300 group-hover:scale-110">
                   Hub
                   {/* subtle glowing underline */}
                   <span className="absolute left-0 bottom-0 w-full h-[3px] bg-[#F97316] opacity-0 group-hover:opacity-100 rounded-full transition-opacity duration-300"></span>
@@ -142,46 +142,54 @@ const Navbar = () => {
             {loading ? (
               <ClockLoader color="#059669" size={34} />
             ) : user ? (
-              <div className="dropdown dropdown-end z-50">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar"
-                >
-                  <div className="w-10 h-10 border-2 border-gray-300 rounded-full">
-                    <img
-                      alt="Tailwind CSS Navbar component"
-                      referrerPolicy="no-referrer"
-                      src={
-                        user.photoURL ||
-                        "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                      }
-                    />
+              <>
+                <div className="dropdown dropdown-end z-50">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 h-10 border-2 border-gray-300 rounded-full">
+                      <img
+                        alt="Tailwind CSS Navbar component"
+                        referrerPolicy="no-referrer"
+                        src={
+                          user.photoURL ||
+                          "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                        }
+                      />
+                    </div>
                   </div>
+                  <ul
+                    tabIndex="-1"
+                    className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-fit p-2 shadow"
+                  >
+                    <div className=" pb-3 border-b border-b-gray-200">
+                      <li className="text-sm font-bold">{user.displayName}</li>
+                      <li className="text-xs">{user.email}</li>
+                    </div>
+                    <li className="my-2">
+                      <NavLink to={"/profile"}>
+                        <FaUser /> Profile
+                      </NavLink>
+                    </li>
+                    <li>
+                      <button
+                        onClick={handleLogOutUser}
+                        className="btn btn-sm my-btn flex lg:hidden"
+                      >
+                        <IoLogOut /> Logout
+                      </button>
+                    </li>
+                  </ul>
                 </div>
-                <ul
-                  tabIndex="-1"
-                  className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-fit p-2 shadow"
+                <button
+                  onClick={handleLogOutUser}
+                  className="btn btn-sm my-btn hidden lg:flex"
                 >
-                  <div className=" pb-3 border-b border-b-gray-200">
-                    <li className="text-sm font-bold">{user.displayName}</li>
-                    <li className="text-xs">{user.email}</li>
-                  </div>
-                  <li className="my-2">
-                    <NavLink to={"/profile"}>
-                      <FaUser /> Profile
-                    </NavLink>
-                  </li>
-                  <li>
-                    <button
-                      onClick={handleLogOutUser}
-                      className="btn btn-sm my-btn"
-                    >
-                      <IoLogOut /> Logout
-                    </button>
-                  </li>
-                </ul>
-              </div>
+                  <IoLogOut /> Logout
+                </button>
+              </>
             ) : (
               <>
                 <Link to={"/login"} className="btn btn-sm my-btn">
