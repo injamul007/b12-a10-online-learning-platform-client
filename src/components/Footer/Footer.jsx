@@ -77,42 +77,45 @@ const Footer = () => {
                 portfolio-ready projects and join a community of learners.
               </p>
 
-              <div className="flex items-center gap-3 mt-2">
+              <div>
+                <p className="text-sm">Contact With Us</p>
+                <div className="flex items-center gap-3 mt-2">
                 <a
                   aria-label="Facebook"
                   href="#"
-                  className="p-2 rounded-lg bg-white/6 hover:bg-white/10 transition"
+                  className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
                 >
                   <FaFacebookF />
                 </a>
                 <a
                   aria-label="Twitter"
                   href="#"
-                  className="p-2 rounded-lg bg-white/6 hover:bg-white/10 transition"
+                  className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
                 >
                   <FaXTwitter />
                 </a>
                 <a
                   aria-label="LinkedIn"
                   href="#"
-                  className="p-2 rounded-lg bg-white/6 hover:bg-white/10 transition"
+                  className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
                 >
                   <FaLinkedinIn />
                 </a>
                 <a
                   aria-label="Instagram"
                   href="#"
-                  className="p-2 rounded-lg bg-white/6 hover:bg-white/10 transition"
+                  className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
                 >
                   <FaInstagram />
                 </a>
                 <a
                   aria-label="YouTube"
                   href="#"
-                  className="p-2 rounded-lg bg-white/6 hover:bg-white/10 transition"
+                  className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
                 >
                   <FaYoutube />
                 </a>
+              </div>
               </div>
             </div>
 
