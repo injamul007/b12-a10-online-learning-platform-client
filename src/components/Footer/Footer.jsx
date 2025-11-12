@@ -268,7 +268,7 @@ const Footer = () => {
                     type="email"
                     name="email"
                     placeholder="your@email.com"
-                    className="flex-1 rounded-full px-4 py-2 bg-transparent border border-white/10 placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-accent"
+                    className="flex-1 rounded-2xl px-4 py-3 bg-transparent border border-white/10 placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-accent"
                     required
                   />
                   <button
