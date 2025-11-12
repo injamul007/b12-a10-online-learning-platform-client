@@ -1,9 +1,47 @@
-import React from 'react';
+import React from "react";
+import { useEffect } from "react";
+import useAxios from "../../hook/useAxios";
+import { useState } from "react";
+import CourseCard from "../../components/courseCard/CourseCard";
+import MyContainer from "../../components/MyContainer/MyContainer";
 
 const Courses = () => {
+  const axiosInstance = useAxios();
+  const [loading, setLoading] = useState(false);
+  const [coursesData, setCoursesData] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      axiosInstance
+        .get("/courses")
+        .then((data) => {
+          console.log(data.data);
+          setCoursesData(data.data);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }, 1000);
+  }, [axiosInstance]);
+
+  if (loading) return <p className="text-3xl">Loading...</p>;
+
   return (
     <div>
-      <h1>All Our Courses</h1>
+      <MyContainer>
+        <h2 className="text-2xl text-center font-bold mt-6">All Courses</h2>
+        <p className="text-center mb-10">Explore Latest Courses</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-16">
+          {coursesData.map((course) => (
+            <CourseCard key={course._id} course={course}></CourseCard>
+          ))}
+        </div>
+      </MyContainer>
     </div>
   );
 };
