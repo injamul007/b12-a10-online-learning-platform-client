@@ -185,14 +185,14 @@ const Navbar = () => {
                 </div>
                 <button
                   onClick={handleLogOutUser}
-                  className="btn btn-sm my-btn hidden lg:flex"
+                  className="btn my-btn hidden lg:flex"
                 >
                   <IoLogOut /> Logout
                 </button>
               </>
             ) : (
               <>
-                <Link to={"/login"} className="btn btn-sm my-btn">
+                <Link to={"/login"} className="btn btn-sm md:btn-md lg:btn-md my-btn">
                   {" "}
                   <IoLogIn /> Login
                 </Link>
