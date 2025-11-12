@@ -273,7 +273,7 @@ const Footer = () => {
                   />
                   <button
                     type="submit"
-                    className="rounded-full px-4 py-2 bg-primary hover:bg-secondary cursor-pointer transition text-white font-semibold disabled:opacity-60"
+                    className="my-btn cursor-pointer"
                   >
                     {subscribe ? "Subscribed" : "Subscribe"}
                   </button>
