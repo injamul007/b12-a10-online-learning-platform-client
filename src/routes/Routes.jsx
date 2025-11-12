@@ -7,9 +7,10 @@ import Register from "../pages/Register/Register";
 import ErrorPage from "../pages/Error404Page/ErrorPage";
 import DashboardLayout from "../layout/DashboardLayout";
 import MyEnrolledCourse from "../pages/MyEnrolledCourse/MyEnrolledCourse";
-import ErrorPageDashboard from "../pages/Error404PageDashboard/ErrorPageDashboard";
 import PrivateRoute from "./PrivateRoute";
 import Settings from "../pages/Settings/Settings";
+import Profile from "../pages/Profile/Profile";
+import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: '/profile',
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
+      },
+      {
+        path: '/profile/update-profile',
+        element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
       }
     ]
   },
