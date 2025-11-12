@@ -38,14 +38,6 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
-      },
-      {
-        path: '/profile',
-        element: <PrivateRoute><Profile></Profile></PrivateRoute>
-      },
-      {
-        path: '/profile/update-profile',
-        element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
       }
     ]
   },
@@ -56,6 +48,14 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/my-enrolled',
         element: <PrivateRoute><MyEnrolledCourse></MyEnrolledCourse></PrivateRoute>
+      },
+      {
+        path: '/dashboard/my-profile',
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
+      },
+      {
+        path: '/dashboard/my-profile/update-profile',
+        element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
       },
       {
         path: '/dashboard/settings',

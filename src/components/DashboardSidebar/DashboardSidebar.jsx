@@ -54,7 +54,7 @@ const DashboardSidebar = ({ onClose }) => {
         <div className="border-t border-white/6 my-3"></div>
 
         <NavLink
-          to="/profile"
+          to="/dashboard/my-profile"
           className={({ isActive }) => `${baseLink} ${isActive ? activeClass : "text-white/90"}`}
           onClick={onClose}
         >
