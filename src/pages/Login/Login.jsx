@@ -1,19 +1,18 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import MyContainer from "../../components/MyContainer/MyContainer";
-import { AuthContext } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import useAuth from "../../hook/useAuth";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { setUser, setLoading, loginUserFunc, googleSignInFunc } =
-    use(AuthContext);
+  const { setUser, setLoading, loginUserFunc, googleSignInFunc } = useAuth();
 
   const handleLogin = (e) => {
     e.preventDefault();

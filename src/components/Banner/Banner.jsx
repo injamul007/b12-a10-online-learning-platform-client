@@ -1,10 +1,10 @@
-import React, { use } from "react";
+import React from "react";
 import { Link } from "react-router";
-import { AuthContext } from "../../context/AuthContext";
 import MyContainer from "../MyContainer/MyContainer";
+import useAuth from "../../hook/useAuth";
 
 const Banner = () => {
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
 
   const slides = [
     {
@@ -34,14 +34,14 @@ const Banner = () => {
           className="carousel-item relative w-full"
         >
           {/* Banner content */}
-          <div className="bg-linear-to-br from-[#059669] to-[#0EA5A4] text-white py-20">
+          <div className="bg-linear-to-br from-primary to-accent text-white py-20">
             <MyContainer>
               <div className="px-6 flex flex-col-reverse lg:flex-row items-center gap-10">
                 {/* Left Text */}
                 <div className="flex-1 text-center lg:text-left">
                   <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-center">
                     Empower Your Learning Journey with{" "}
-                    <span className="text-[#f97416]">SkilledHub</span>
+                    <span className="text-secondary">SkilledHub</span>
                   </h1>
                   <p className="text-lg text-center text-white/80 mb-6">
                     Discover expert-led online courses in technology, design,

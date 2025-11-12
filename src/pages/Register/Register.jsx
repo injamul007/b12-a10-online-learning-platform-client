@@ -1,11 +1,11 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import MyContainer from "../../components/MyContainer/MyContainer";
 import { FaEye } from "react-icons/fa6";
 import { IoEyeOff } from "react-icons/io5";
 import { Link, Navigate } from "react-router";
-import { AuthContext } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import useAuth from "../../hook/useAuth";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,7 +17,7 @@ const Register = () => {
     createUserFunc,
     updateProfileFunc,
     googleSignInFunc,
-  } = use(AuthContext);
+  } = useAuth();
 
   if (user) {
     return <Navigate to={"/"}></Navigate>;

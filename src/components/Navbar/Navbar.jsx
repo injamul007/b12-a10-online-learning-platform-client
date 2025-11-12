@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { GoHomeFill } from "react-icons/go";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
@@ -7,14 +7,14 @@ import { TiContacts } from "react-icons/ti";
 import { MdDashboard } from "react-icons/md";
 import MyContainer from "../MyContainer/MyContainer";
 import navLogo from "../../assets/websiteLogo.png";
-import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { ClockLoader } from "react-spinners";
 import { FaSun, FaMoon } from "react-icons/fa";
+import useAuth from "../../hook/useAuth";
 
 const Navbar = () => {
-  const { user, setUser, loading, logOutUserFunc } = use(AuthContext);
+  const { user, setUser, loading, logOutUserFunc } = useAuth();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const navigate = useNavigate();
   const links = (
