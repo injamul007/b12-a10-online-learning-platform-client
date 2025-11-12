@@ -4,7 +4,7 @@ import { MdDashboard } from "react-icons/md";
 import { BiBookAdd, BiBookAlt } from "react-icons/bi";
 import { AiOutlineUser, AiOutlineUnorderedList } from "react-icons/ai";
 
-export default function DashboardSidebar({ onClose }) {
+const DashboardSidebar = ({ onClose }) => {
   const baseLink =
     "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition hover:bg-white/5";
   const activeClass = "bg-white/6 text-[#059669] font-semibold ring-1 ring-[#059669]/10";
@@ -74,3 +74,5 @@ export default function DashboardSidebar({ onClose }) {
     </aside>
   );
 }
+
+export default DashboardSidebar;

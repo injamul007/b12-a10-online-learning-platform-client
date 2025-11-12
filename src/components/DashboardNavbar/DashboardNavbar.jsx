@@ -5,7 +5,7 @@ import { IoLogOut } from "react-icons/io5";
 import { BsSun, BsMoon } from "react-icons/bs";
 import useAuth from "../../hook/useAuth";
 
-export default function DashboardNavbar({ onOpenSidebar }) {
+const DashboardNavbar = ({ onOpenSidebar }) => {
   const { user, logOutUserFunc } = useAuth();
   const [theme, setTheme] = useState(() => {
     try {
@@ -97,3 +97,6 @@ export default function DashboardNavbar({ onOpenSidebar }) {
     </header>
   );
 }
+
+
+export default DashboardNavbar;

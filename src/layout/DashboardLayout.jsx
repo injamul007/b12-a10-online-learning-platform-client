@@ -5,7 +5,7 @@ import DashboardNavbar from "../components/DashboardNavbar/DashboardNavbar";
 import DashboardSidebar from "../components/DashboardSidebar/DashboardSidebar";
 import useAuth from "../hook/useAuth";
 
-export default function DashboardLayout() {
+const DashboardLayout = () => {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
 
@@ -63,3 +63,6 @@ export default function DashboardLayout() {
     </div>
   );
 }
+
+
+export default DashboardLayout;
