@@ -1,4 +1,3 @@
-// src/components/DashboardNavbar.jsx
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { FiMenu } from "react-icons/fi";
@@ -27,7 +26,6 @@ export default function DashboardNavbar({ onOpenSidebar }) {
   const handleLogout = async () => {
     try {
       await logOutUserFunc();
-      // optionally navigate away in parent
     } catch (err) {
       console.error(err);
     }
