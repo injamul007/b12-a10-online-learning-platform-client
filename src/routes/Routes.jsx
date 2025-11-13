@@ -17,76 +17,113 @@ import MyAddedCourses from "../pages/MyAddedCourses/MyAddedCourses";
 import UpdateCourse from "../pages/UpdateCourse/UpdateCourse";
 import LoadSpinner from "../components/LoadSpinner/LoadSpinner";
 
-
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <MainLayout></MainLayout>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
-        element: <Home></Home>
+        element: <Home></Home>,
       },
       {
-        path: '/home',
-        element: <Home></Home>
+        path: "/home",
+        element: <Home></Home>,
       },
       {
-        path: '/courses',
-        element: <Courses></Courses>
+        path: "/courses",
+        element: <Courses></Courses>,
       },
       {
-        path: '/courses/:id',
-        element: <PrivateRoute><CourseDetails></CourseDetails></PrivateRoute>
+        path: "/courses/:id",
+        element: (
+          <PrivateRoute>
+            <CourseDetails></CourseDetails>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/login',
-        element: <Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path: '/register',
-        element: <Register></Register>
-      }
-    ]
+        path: "/register",
+        element: <Register></Register>,
+      },
+    ],
   },
   {
-    path: '/dashboard',
-    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
-        path: '/dashboard/my-enrolled',
-        element: <PrivateRoute><MyEnrolledCourse></MyEnrolledCourse></PrivateRoute>
+        path: "/dashboard/my-enrolled",
+        element: (
+          <PrivateRoute>
+            <MyEnrolledCourse></MyEnrolledCourse>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/dashboard/my-profile',
-        element: <PrivateRoute><Profile></Profile></PrivateRoute>
+        path: "/dashboard/my-profile",
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/dashboard/add-course',
-        element: <PrivateRoute><AddCourse></AddCourse></PrivateRoute>
+        path: "/dashboard/add-course",
+        element: (
+          <PrivateRoute>
+            <AddCourse></AddCourse>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/dashboard/my-courses',
-        element: <PrivateRoute><MyAddedCourses></MyAddedCourses></PrivateRoute>
+        path: "/dashboard/my-courses",
+        element: (
+          <PrivateRoute>
+            <MyAddedCourses></MyAddedCourses>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/dashboard/update-course/:id',
-        element: <PrivateRoute><UpdateCourse></UpdateCourse></PrivateRoute>,
+        path: "/dashboard/update-course/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateCourse></UpdateCourse>
+          </PrivateRoute>
+        ),
         hydrateFallbackElement: <LoadSpinner></LoadSpinner>,
-        loader: ({params})=> fetch(`http://localhost:3000/courses/${params.id}`)
+        loader: ({ params }) =>
+          fetch(
+            `https://skilledhub-online-learning-platform.vercel.app/courses/${params.id}`
+          ),
       },
       {
-        path: '/dashboard/my-profile/update-profile',
-        element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
+        path: "/dashboard/my-profile/update-profile",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile></UpdateProfile>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/dashboard/settings',
-        element: <PrivateRoute><Settings></Settings></PrivateRoute>
-      }
-    ]
-  }
-])
-
+        path: "/dashboard/settings",
+        element: (
+          <PrivateRoute>
+            <Settings></Settings>
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 export default router;

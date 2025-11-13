@@ -1,9 +1,9 @@
-import axios from 'axios';
-import React from 'react';
+import axios from "axios";
+import React from "react";
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000'
-})
+  baseURL: "https://skilledhub-online-learning-platform.vercel.app",
+});
 
 const useAxios = () => {
   return axiosInstance;
