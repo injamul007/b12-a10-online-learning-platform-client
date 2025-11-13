@@ -10,9 +10,6 @@ export default function CourseDetails() {
   const axiosInstance = useAxios();
   const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(false);
-  // const location = useLocation();
-
-  // const course = location?.state?.course || SAMPLE_COURSE;
 
   useEffect(() => {
     setLoading(true);

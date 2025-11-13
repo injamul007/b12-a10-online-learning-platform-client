@@ -14,6 +14,8 @@ import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import AddCourse from "../pages/AddCourse/AddCourse";
 import CourseDetails from "../pages/CourseDetails/CourseDetails";
 import MyAddedCourses from "../pages/MyAddedCourses/MyAddedCourses";
+import UpdateCourse from "../pages/UpdateCourse/UpdateCourse";
+import LoadSpinner from "../components/LoadSpinner/LoadSpinner";
 
 
 const router = createBrowserRouter([
@@ -67,6 +69,12 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/my-courses',
         element: <PrivateRoute><MyAddedCourses></MyAddedCourses></PrivateRoute>
+      },
+      {
+        path: '/dashboard/update-course/:id',
+        element: <PrivateRoute><UpdateCourse></UpdateCourse></PrivateRoute>,
+        hydrateFallbackElement: <LoadSpinner></LoadSpinner>,
+        loader: ({params})=> fetch(`http://localhost:3000/courses/${params.id}`)
       },
       {
         path: '/dashboard/my-profile/update-profile',

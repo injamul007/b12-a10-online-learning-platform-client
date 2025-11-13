@@ -31,14 +31,14 @@ const MyCourseCard = ({ course, handleDelete }) => {
           <div className="flex gap-3">
             <Link
               to={`/dashboard/update-course/${_id}`}
-              className="text-blue-500 hover:text-blue-600 text-lg"
+              className="text-teal-500 hover:text-blue-600 text-lg"
               title="Edit"
             >
               <FiEdit2 />
             </Link>
             <button
               onClick={() => handleDelete(_id)}
-              className="text-red-500 hover:text-red-600 text-lg cursor-pointer"
+              className="text-red-500 hover:text-red-700 text-lg cursor-pointer"
               title="Delete"
             >
               <FiTrash2 />
