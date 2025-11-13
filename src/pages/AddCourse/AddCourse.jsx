@@ -1,12 +1,12 @@
 import React from "react";
 import useAuth from "../../hook/useAuth";
-import useAxios from "../../hook/useAxios";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../hook/useAxiosSecure";
 
 const AddCourse = () => {
   const { user } = useAuth();
-  const axiosInstance = useAxios();
+  const axiosInstanceSecure = useAxiosSecure();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const AddCourse = () => {
     };
 
     //? post data with axios api method
-    axiosInstance
+    axiosInstanceSecure
       .post("/courses", formData)
       .then((data) => {
         if (data.data.insertedId) {

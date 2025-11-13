@@ -13,6 +13,7 @@ import Profile from "../pages/Profile/Profile";
 import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import AddCourse from "../pages/AddCourse/AddCourse";
 import CourseDetails from "../pages/CourseDetails/CourseDetails";
+import MyAddedCourses from "../pages/MyAddedCourses/MyAddedCourses";
 
 
 const router = createBrowserRouter([
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/add-course',
         element: <PrivateRoute><AddCourse></AddCourse></PrivateRoute>
+      },
+      {
+        path: '/dashboard/my-courses',
+        element: <PrivateRoute><MyAddedCourses></MyAddedCourses></PrivateRoute>
       },
       {
         path: '/dashboard/my-profile/update-profile',
