@@ -167,7 +167,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      to="/my-courses"
+                      to="/dashboard/my-courses"
                       className="hover:text-secondary transition"
                     >
                       My Added Courses
@@ -175,7 +175,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      to="/add-course"
+                      to="/dashboard/add-course"
                       className="hover:text-secondary transition"
                     >
                       Add Course
@@ -183,7 +183,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      to="/profile"
+                      to="/dashboard/my-profile"
                       className="hover:text-secondary transition"
                     >
                       Profile
