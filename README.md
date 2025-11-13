@@ -14,7 +14,7 @@ It provides a seamless and secure environment for instructors to manage their co
 ---
 
 ## 🌐 Live URL
-🔗 **Live Site:** 
+🔗 **Live Site:** https://skilledhub-online-learning-platform.netlify.app/
 
 ---
 
