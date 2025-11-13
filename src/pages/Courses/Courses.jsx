@@ -5,6 +5,7 @@ import { useState } from "react";
 import CourseCard from "../../components/courseCard/CourseCard";
 import MyContainer from "../../components/MyContainer/MyContainer";
 import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
+import { motion } from "framer-motion"; // <-- added
 
 const Courses = () => {
   const axiosInstance = useAxios();
@@ -28,7 +29,20 @@ const Courses = () => {
     }, 1000);
   }, [axiosInstance]);
 
-  if (loading) return <LoadSpinner></LoadSpinner>
+  if (loading) return <LoadSpinner></LoadSpinner>;
+
+  // motion variants
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
 
   return (
     <div>
@@ -37,11 +51,19 @@ const Courses = () => {
         <h2 className="text-3xl text-center font-bold mt-6">All Courses</h2>
         <p className="text-center mb-10">Explore Latest Courses</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-16">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {coursesData.map((course) => (
-            <CourseCard key={course._id} course={course}></CourseCard>
+            <motion.div key={course._id} variants={fadeUp}>
+              <CourseCard course={course}></CourseCard>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </MyContainer>
     </div>
   );

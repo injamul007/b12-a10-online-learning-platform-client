@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import MyContainer from "../MyContainer/MyContainer";
 import useAuth from "../../hook/useAuth";
+import { motion } from "framer-motion";
 
 const Banner = () => {
   const { user } = useAuth();
@@ -37,72 +38,80 @@ const Banner = () => {
     },
   ];
 
+  const fadeUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <div className="carousel w-full">
-      <title>SkilledHub || Banner</title>
-      {slides.map((slide, index) => (
-        <div
-          id={`slide${index + 1}`}
-          key={index}
-          className="carousel-item relative w-full"
-        >
-          {/* Banner content */}
-          <div className="bg-linear-to-br from-primary to-accent text-white py-20">
-            <MyContainer>
-              <div className="px-6 flex flex-col-reverse lg:flex-row items-center gap-10">
-                {/* Left Text */}
-                <div className="flex-1 text-center lg:text-left">
-                  <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-center">
-                    {slide.title}{" "}
-                  </h1>
-                  <p className="text-lg text-center text-white/80 mb-6">
-                    {slide.subtitle}
-                  </p>
-                  <div className="flex justify-center gap-4">
-                    <Link to="/courses" className="my-btn transition-all">
-                      Explore Courses
-                    </Link>
-                    {/* conditional join btn depend on user state */}
-                    {user && user.email ? (
-                      ""
-                    ) : (
-                      <Link to="/register" className="my-btn">
-                        Join Now
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      variants={fadeUp}
+    >
+      <div className="carousel w-full">
+        <title>SkilledHub || Banner</title>
+        {slides.map((slide, index) => (
+          <div
+            id={`slide${index + 1}`}
+            key={index}
+            className="carousel-item relative w-full"
+          >
+            <div className="bg-linear-to-br from-primary to-accent text-white py-20">
+              <MyContainer>
+                <div className="px-6 flex flex-col-reverse lg:flex-row items-center gap-10">
+                  <div className="flex-1 text-center lg:text-left">
+                    <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-center">
+                      {slide.title}{" "}
+                    </h1>
+                    <p className="text-lg text-center text-white/80 mb-6">
+                      {slide.subtitle}
+                    </p>
+                    <div className="flex justify-center gap-4">
+                      <Link to="/courses" className="my-btn transition-all">
+                        Explore Courses
                       </Link>
-                    )}
+                      {user && user.email ? (
+                        ""
+                      ) : (
+                        <Link to="/register" className="my-btn">
+                          Join Now
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex-1 flex justify-center">
+                    <img
+                      src={slide.img}
+                      alt={slide.tag}
+                      className="w-3/4 h-96 lg:w-full rounded-xl"
+                    />
                   </div>
                 </div>
+              </MyContainer>
+            </div>
 
-                {/* Right Image */}
-                <div className="flex-1 flex justify-center">
-                  <img
-                    src={slide.img}
-                    alt={slide.tag}
-                    className="w-3/4 h-96 lg:w-full rounded-xl"
-                  />
-                </div>
-              </div>
-            </MyContainer>
+            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+              <a
+                href={`#slide${index === 0 ? slides.length : index}`}
+                className="btn btn-circle"
+              >
+                ❮
+              </a>
+              <a
+                href={`#slide${index === slides.length - 1 ? 1 : index + 2}`}
+                className="btn btn-circle"
+              >
+                ❯
+              </a>
+            </div>
           </div>
-
-          {/* Carousel navigation */}
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a
-              href={`#slide${index === 0 ? slides.length : index}`}
-              className="btn btn-circle"
-            >
-              ❮
-            </a>
-            <a
-              href={`#slide${index === slides.length - 1 ? 1 : index + 2}`}
-              className="btn btn-circle"
-            >
-              ❯
-            </a>
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </motion.div>
   );
 };
 

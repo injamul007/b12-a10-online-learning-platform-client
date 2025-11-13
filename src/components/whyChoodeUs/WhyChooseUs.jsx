@@ -6,8 +6,24 @@ import {
   FaHandsHelping,
 } from "react-icons/fa";
 import MyContainer from "../MyContainer/MyContainer";
+import { motion } from "framer-motion"; // <-- added
 
 const WhyChooseUs = () => {
+  // motion variants
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
   return (
     <MyContainer>
       <section className="pb-16 lg:pb-24">
@@ -23,8 +39,18 @@ const WhyChooseUs = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-white">
+          {/* Cards with motion */}
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <motion.div
+              className="rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-white"
+              variants={fadeUp}
+            >
               <div className="w-12 h-12 flex items-center justify-center rounded-md bg-[#059669]/10 text-[#059669] text-xl mb-4 ">
                 <FaChalkboardTeacher />
               </div>
@@ -33,9 +59,12 @@ const WhyChooseUs = () => {
                 Get real-world guidance and code-based lessons from experienced
                 instructors.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-white">
+            <motion.div
+              className="rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-white"
+              variants={fadeUp}
+            >
               <div className="w-12 h-12 flex items-center justify-center rounded-md bg-[#F97316]/10 text-[#F97316] text-xl mb-4">
                 <FaRocket />
               </div>
@@ -44,9 +73,12 @@ const WhyChooseUs = () => {
                 Each course includes projects — helping you build your
                 portfolio.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-white">
+            <motion.div
+              className="rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-white"
+              variants={fadeUp}
+            >
               <div className="w-12 h-12 flex items-center justify-center rounded-md bg-[#0EA5A4]/10 text-[#0EA5A4] text-xl mb-4">
                 <FaCertificate />
               </div>
@@ -55,9 +87,12 @@ const WhyChooseUs = () => {
                 Get a certificate after completing the course — perfect for
                 showcasing on your CV or LinkedIn.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-white">
+            <motion.div
+              className="rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-white"
+              variants={fadeUp}
+            >
               <div className="w-12 h-12 flex items-center justify-center rounded-md bg-[#071422]/5 text-xl mb-4">
                 <FaHandsHelping />
               </div>
@@ -66,8 +101,8 @@ const WhyChooseUs = () => {
                 An active community for questions and problems — you’re not
                 alone.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           <div className="text-center mt-10">
             <a
