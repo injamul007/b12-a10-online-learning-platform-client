@@ -4,12 +4,17 @@ import { FiClock, FiTag, FiDollarSign, FiChevronLeft } from "react-icons/fi";
 import useAxios from "../../hook/useAxios";
 import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
 import MyContainer from "../../components/MyContainer/MyContainer";
+import useAxiosSecure from "../../hook/useAxiosSecure";
+import useAuth from "../../hook/useAuth";
+import Swal from "sweetalert2";
 
 export default function CourseDetails() {
   const { id } = useParams();
   const axiosInstance = useAxios();
   const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(false);
+  const axiosInstanceSecure = useAxiosSecure();
+  const { user } = useAuth();
 
   useEffect(() => {
     setLoading(true);
@@ -25,6 +30,44 @@ export default function CourseDetails() {
         });
     }, 1000);
   }, [id, axiosInstance]);
+
+  const handleEnroll = () => {
+    const finalCourseData = {
+      title: course.title,
+      imageURL: course.imageURL,
+      price: course.price,
+      duration: course.duration,
+      category: course.category,
+      description: course.description,
+      isFeatured: course.isFeatured,
+      instructor: {
+        name: course.instructor.name,
+        email: course.instructor.email,
+        photo: course.instructor.photo,
+      },
+      createdAt: course.createdAt,
+      enrolled_by: user.email,
+    };
+
+    axiosInstanceSecure
+      .post("/my-enrolled", finalCourseData)
+      .then((data) => {
+        console.log(data.data);
+        if (data.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Enrolled Successful",
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: "small-swal-popup",
+            },
+          });
+        }
+      })
+      .catch((error) => console.log(error.message));
+  };
 
   if (loading) return <LoadSpinner></LoadSpinner>;
 
@@ -90,15 +133,13 @@ export default function CourseDetails() {
                 </div>
               </div>
 
-              <p className="text-sm mb-5">
-                Created at: {course?.createdAt}
-              </p>
+              <p className="text-sm mb-5">Created at: {course?.createdAt}</p>
 
               <p className="mb-5">{course?.description}</p>
 
               <div className="flex items-center gap-4">
                 <button
-                  // onClick={handleEnroll}
+                  onClick={handleEnroll}
                   className="my-btn transition cursor-pointer"
                 >
                   Enroll now

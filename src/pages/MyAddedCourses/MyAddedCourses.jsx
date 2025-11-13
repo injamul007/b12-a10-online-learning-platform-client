@@ -44,7 +44,6 @@ const MyAddedCourses = () => {
         axiosInstance
           .delete(`/courses/${id}`)
           .then((data) => {
-            console.log(data.data);
             if (data.data.deletedCount) {
               const remainingCourse = [...myCourse].filter((c) => c._id !== id);
               setMyCourse(remainingCourse);
