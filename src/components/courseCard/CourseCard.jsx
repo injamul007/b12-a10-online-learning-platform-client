@@ -8,12 +8,9 @@ export default function CourseCard({ course }) {
 
   const {_id, title, price, category,duration, imageURL, isFeatured } = course || {};
 
-  const isFree = !price || Number(price) === 0;
-  const priceLabel = isFree ? "Free" : `$${Number(price).toFixed(2)}`;
-
   return (
       <div
-        className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transform hover:-translate-y-1 transition-all duration-200 max-w-sm"
+        className="group rounded-2xl overflow-hidden shadow-sm hover:shadow-lg shadow-gray-500 transform hover:-translate-y-1 transition-all duration-200 hover:border-white hover:border"
       >
         {/* Image */}
         <div className="relative">
@@ -48,7 +45,7 @@ export default function CourseCard({ course }) {
         {/* Content */}
         <div className="p-5 pt-6">
           <h3
-            className="text-md font-semibold text-gray-800 mb-2 line-clamp-1"
+            className="text-md font-semibold mb-2 line-clamp-1"
           >
             {title}
           </h3>
@@ -66,7 +63,7 @@ export default function CourseCard({ course }) {
 
           <div className="flex items-center justify-between">
             <div>
-              <span className={`text-sm font-bold text-secondary`}>{priceLabel}</span>
+              <span className={`text-sm font-bold text-secondary`}>$ {price}</span>
             </div>
 
             <Link

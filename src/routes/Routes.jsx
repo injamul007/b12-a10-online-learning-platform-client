@@ -12,6 +12,7 @@ import Settings from "../pages/Settings/Settings";
 import Profile from "../pages/Profile/Profile";
 import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import AddCourse from "../pages/AddCourse/AddCourse";
+import CourseDetails from "../pages/CourseDetails/CourseDetails";
 
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/courses',
         element: <Courses></Courses>
+      },
+      {
+        path: '/courses/:id',
+        element: <PrivateRoute><CourseDetails></CourseDetails></PrivateRoute>
       },
       {
         path: '/login',
@@ -64,7 +69,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/settings',
-        element: <Settings></Settings>
+        element: <PrivateRoute><Settings></Settings></PrivateRoute>
       }
     ]
   }
