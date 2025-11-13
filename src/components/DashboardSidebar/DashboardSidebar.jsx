@@ -10,9 +10,9 @@ const DashboardSidebar = ({ onClose }) => {
   const activeClass = "bg-white/6 text-[#059669] font-semibold ring-1 ring-[#059669]/10";
 
   return (
-    <aside className="bg-[#071422] text-white w-72 min-h-screen p-4 lg:block">
+    <aside className="bg-[#071422] text-white lg:w-72 w-52 h-full p-2 lg:p-4 lg:block">
       <nav className="space-y-3">
-        <div className="text-xs text-white/60 uppercase tracking-wider mb-2">Dashboard</div>
+        <div className="text-xs text-white/60 uppercase mb-2">Dashboard</div>
 
         <NavLink
           to="/dashboard"

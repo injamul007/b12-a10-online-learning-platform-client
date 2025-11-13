@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import Settings from "../pages/Settings/Settings";
 import Profile from "../pages/Profile/Profile";
 import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
+import AddCourse from "../pages/AddCourse/AddCourse";
 
 
 const router = createBrowserRouter([
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/my-profile',
         element: <PrivateRoute><Profile></Profile></PrivateRoute>
+      },
+      {
+        path: '/dashboard/add-course',
+        element: <PrivateRoute><AddCourse></AddCourse></PrivateRoute>
       },
       {
         path: '/dashboard/my-profile/update-profile',

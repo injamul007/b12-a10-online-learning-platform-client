@@ -24,13 +24,13 @@ const DashboardLayout = () => {
           <div className="fixed inset-0 z-50 lg:hidden">
             <div className="absolute inset-0 " onClick={() => setOpen(false)}></div>
 
-            <div className="absolute left-0 top-0 bottom-0 w-72 bg-[#071422] p-4 overflow-auto">
+            <div className="absolute left-0 top-0 bottom-0 w-72 bg-[#071422] p-4 overflow-auto text-white">
               <div className="flex items-center justify-between mb-4">
                 <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-                  <span className="font-extrabold">Skilled<span className="text-[#F97316]">Hub</span></span>
+                  <span className="font-extrabold text-white">Skilled<span className="text-[#F97316]">Hub</span></span>
                 </Link>
 
-                <button onClick={() => setOpen(false)} className="p-2 bg-white/5 rounded-md">
+                <button onClick={() => setOpen(false)} className="p-2 bg-white/5 rounded-md cursor-pointer">
                   <FiX />
                 </button>
               </div>
@@ -46,11 +46,7 @@ const DashboardLayout = () => {
             <div className="flex items-center justify-between gap-4 mb-6">
               <div>
                 <h2 className="text-2xl font-bold">Dashboard</h2>
-                <p className="text-sm">Welcome back{user && `, ${user.displayName?.split(" ")[0] || ""}`} — manage your courses and students here.</p>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Link to="/courses" className="px-4 py-2 rounded-full bg-[#059669] hover:bg-[#0EA5A4] text-white lg:text-lg text-sm font-semibold">Browse Course</Link>
+                <p className="text-sm">Welcome back{user && `, ${user?.displayName || ""}`} — manage your courses and students here.</p>
               </div>
             </div>
 
