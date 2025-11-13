@@ -31,6 +31,7 @@ const MyEnrolledCourse = () => {
 
   return (
     <div>
+      <title>SkilledHub || My Enrolled Course</title>
       <h2 className="text-4xl text-center font-bold mb-10">My Enrolled Course</h2>
 
       <MyContainer>

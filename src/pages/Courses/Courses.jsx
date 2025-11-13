@@ -33,6 +33,7 @@ const Courses = () => {
   return (
     <div>
       <MyContainer>
+        <title>SkilledHub || Courses</title>
         <h2 className="text-3xl text-center font-bold mt-6">All Courses</h2>
         <p className="text-center mb-10">Explore Latest Courses</p>
 

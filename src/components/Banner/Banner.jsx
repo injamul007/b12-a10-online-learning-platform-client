@@ -39,6 +39,7 @@ const Banner = () => {
 
   return (
     <div className="carousel w-full">
+      <title>SkilledHub || Banner</title>
       {slides.map((slide, index) => (
         <div
           id={`slide${index + 1}`}

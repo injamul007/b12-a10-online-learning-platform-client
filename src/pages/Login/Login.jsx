@@ -163,6 +163,7 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center bg-linear-to-br from-[#059669] to-[#0ea5a4]">
+      <title>SkilledHub || Login</title>
       <MyContainer>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 p-6 lg:p-10 text-white">
           {/* Left section */}

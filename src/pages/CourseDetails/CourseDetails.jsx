@@ -73,6 +73,7 @@ export default function CourseDetails() {
 
   return (
     <MyContainer>
+      <title>SkilledHub || Course Details</title>
       <div className="px-4 py-10">
         <Link
           to="/courses"

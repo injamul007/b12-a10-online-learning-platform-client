@@ -63,6 +63,7 @@ const MyAddedCourses = () => {
 
   return (
     <div>
+      <title>SkilledHub || My Added Course</title>
       <h2 className="text-3xl text-center font-bold mb-10">My Added Courses</h2>
 
       <MyContainer>

@@ -50,6 +50,7 @@ const Footer = () => {
       </div>
 
       <MyContainer>
+        <title>SkilledHub || Footer</title>
         <div className="px-6 py-12 lg:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Brand + description */}

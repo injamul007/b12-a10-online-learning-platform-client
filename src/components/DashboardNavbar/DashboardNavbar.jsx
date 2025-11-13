@@ -35,6 +35,7 @@ const DashboardNavbar = ({ onOpenSidebar }) => {
   return (
     <header className="w-full sticky top-0 z-40 bg-linear-to-br from-[#061521] to-[#071422] text-white">
       <MyContainer>
+        <title>SkilledHub || Dashboard Navbar</title>
         <div className="px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button

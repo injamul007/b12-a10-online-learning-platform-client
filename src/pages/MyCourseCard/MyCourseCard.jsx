@@ -7,6 +7,7 @@ const MyCourseCard = ({ course, handleDelete }) => {
 
   return (
     <div className="group rounded-2xl overflow-hidden shadow-sm hover:shadow-lg shadow-gray-500 transform hover:-translate-y-1 transition-all duration-200 hover:border-white hover:border bg-white/3 backdrop-blur">
+      {/* <title>SkilledHub || My Course Card</title> */}
       {/* Image */}
       <img src={imageURL} alt={title} className="w-full h-44 object-cover" />
 
