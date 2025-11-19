@@ -88,7 +88,8 @@ It provides a seamless and secure environment for instructors to manage their co
 
 ## 📦 Dependency
 
-"dependencies": {
+```json
+{
     "@tailwindcss/vite": "^4.1.17",
     "axios": "^1.13.2",
     "firebase": "^12.5.0",
@@ -102,8 +103,8 @@ It provides a seamless and secure environment for instructors to manage their co
     "sweetalert2": "^11.26.3",
     "swiper": "^12.0.3",
     "tailwindcss": "^4.1.17"
-  }
-
+}
+```
 
 ## 📥 Installation & Setup
 
