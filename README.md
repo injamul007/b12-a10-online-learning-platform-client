@@ -84,3 +84,37 @@ It provides a seamless and secure environment for instructors to manage their co
 | **sweetalert2** | Custom toast notifications |
 | **React-Toastify** | Toast notifications |
 | **react-icons** | Beautiful icons for UI enhancement |
+
+
+## 📦 Dependency
+
+"dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "axios": "^1.13.2",
+    "firebase": "^12.5.0",
+    "framer-motion": "^12.23.24",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-icons": "^5.5.0",
+    "react-router": "^7.9.5",
+    "react-spinners": "^0.17.0",
+    "react-toastify": "^11.0.5",
+    "sweetalert2": "^11.26.3",
+    "swiper": "^12.0.3",
+    "tailwindcss": "^4.1.17"
+  }
+
+
+## 📥 Installation & Setup
+
+  # Clone the repository
+git clone https://github.com/injamul007/b12-a10-online-learning-platform-client.git
+
+# Navigate into the project directory
+cd your-repo
+
+# Install all required dependencies
+npm install
+
+# Start the development server
+npm run dev
