@@ -5,7 +5,7 @@ import { useState } from "react";
 import CourseCard from "../../components/courseCard/CourseCard";
 import MyContainer from "../../components/MyContainer/MyContainer";
 import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
-import { motion } from "framer-motion"; // <-- added
+import { motion } from "framer-motion";
 
 const Courses = () => {
   const axiosInstance = useAxios();

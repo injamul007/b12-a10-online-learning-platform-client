@@ -11,7 +11,7 @@ const DashboardSidebar = ({ onClose }) => {
 
   return (
     <aside className="bg-[#071422] text-white lg:w-72 w-52 h-full p-2 lg:p-4 lg:block">
-      <title>SkilledHub || Dashboard Sidebar</title>
+      <title>SkilledHub || Dashboard</title>
       <nav className="space-y-3">
         <div className="text-xs text-white/60 uppercase mb-2">Dashboard</div>
 

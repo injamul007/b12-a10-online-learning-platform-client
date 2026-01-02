@@ -6,7 +6,7 @@ import {
   FaHandsHelping,
 } from "react-icons/fa";
 import MyContainer from "../MyContainer/MyContainer";
-import { motion } from "framer-motion"; // <-- added
+import { motion } from "framer-motion";
 
 const WhyChooseUs = () => {
   // motion variants
@@ -27,7 +27,6 @@ const WhyChooseUs = () => {
   return (
     <MyContainer>
       <section className="pb-16 lg:pb-24">
-        <title>SkilledHub || Why Choose Us</title>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-extrabold">

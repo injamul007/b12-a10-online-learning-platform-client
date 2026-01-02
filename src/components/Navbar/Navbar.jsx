@@ -72,7 +72,6 @@ const Navbar = () => {
   return (
     <div className="navbar shadow-sm glass-card relative z-1000">
       <MyContainer>
-        <title>SkilledHub || Navbar</title>
         <div className="flex justify-between items-center py-1">
           <div className="navbar-start">
             <div className="dropdown">
