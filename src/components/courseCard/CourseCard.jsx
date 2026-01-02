@@ -9,7 +9,7 @@ export default function CourseCard({ course }) {
 
   return (
       <div
-        className="group rounded-2xl overflow-hidden shadow-sm hover:shadow-lg shadow-gray-500 transform hover:-translate-y-1 transition-all duration-200 hover:border-white hover:border"
+        className="group rounded-2xl overflow-hidden shadow-sm hover:shadow-md shadow-gray-500 transform hover:-translate-y-1 transition-all duration-300"
       >
         {/* Image */}
         <div className="relative">
