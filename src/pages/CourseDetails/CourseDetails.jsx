@@ -139,12 +139,12 @@ export default function CourseDetails() {
               <p className="mb-5">{course?.description}</p>
 
               <div className="flex items-center gap-4">
-                <button
+                {user?.email ? <button
                   onClick={handleEnroll}
                   className="my-btn transition cursor-pointer"
                 >
                   Enroll now
-                </button>
+                </button> : <button disabled className="btn disabled:text-gray-600 disabled:dark:text-gray-200">Login to Enroll this Course</button>}
               </div>
             </div>
           </div>
