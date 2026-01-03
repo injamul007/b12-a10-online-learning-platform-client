@@ -9,19 +9,21 @@ import { motion } from "framer-motion";
 
 const Courses = () => {
   const axiosInstance = useAxios();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [coursesData, setCoursesData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0)
   const [limit] = useState(11)
   const [totalPage, setTotalPage] = useState(0)
   const [totalCourses, setTotalCourses] = useState(0)
+  const [sort, setSort] = useState("durationInWeeks")
+  const [order, setOrder] = useState("")
 
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       const skip = currentPage * limit
       axiosInstance
-        .get(`/courses?limit=${limit}&skip=${skip}`)
+        .get(`/courses?limit=${limit}&skip=${skip}&sort=${sort}&order=${order}`)
         .then((data) => {
           setCoursesData(data.data.result);
           setTotalCourses(data.data.totalCourses)
@@ -34,9 +36,13 @@ const Courses = () => {
           setLoading(false);
         });
     }, 800);
-  }, [axiosInstance,currentPage,limit]);
+  }, [axiosInstance,currentPage,limit,sort,order]);
 
-  if (loading) return <LoadSpinner></LoadSpinner>;
+  const handleSorting = (e) => {
+    const sortText = e.target.value
+    setSort(sortText.split('-')[0])
+    setOrder(sortText.split('-')[1])
+  }
 
   // motion variants
   const containerVariants = {
@@ -58,7 +64,24 @@ const Courses = () => {
         <h2 className="text-3xl text-center font-bold mt-10">All Courses</h2>
         <p className="text-center mt-4 mb-14">Explore Latest Courses <span className="text-secondary">({totalCourses})</span></p>
 
-        <motion.div
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mb-12">
+          <div>Filter</div>
+          <div>Search</div>
+          <div>
+            <select onChange={handleSorting} className="select">
+              <option selected disabled>Sort by  <span className="text-xs">P / D / L</span></option>
+              <option value={'price-desc'}>Price: High - Low</option>
+              <option value={'price-asc'}>Price: Low - High</option>
+              <option value={'durationInWeeks-desc'}>Duration: High - Low</option>
+              <option value={'durationInWeeks-asc'}>Duration: Low - High</option>
+              <option value={'lessons-desc'}>Lessons: High - Low</option>
+              <option value={'lessons-asc'}>Lessons: Low - High</option>
+            </select>
+          </div>
+        </div>
+
+        {
+          loading? <LoadSpinner></LoadSpinner> : <motion.div
           className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-16"
           variants={containerVariants}
           initial="hidden"
@@ -71,6 +94,7 @@ const Courses = () => {
             </motion.div>
           ))}
         </motion.div>
+        }
 
           {/* //? Pagination Buttons */}
         <div className="flex items-center justify-end gap-1 mb-14">
