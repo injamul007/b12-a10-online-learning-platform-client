@@ -5,7 +5,7 @@ import { HiOutlineDocumentText } from "react-icons/hi";
 
 export default function CourseCard({ course }) {
 
-  const {_id, title, price, category,duration, imageURL, isFeatured } = course || {};
+  const {_id, title, price, category, duration, lessons, imageURL, isFeatured } = course || {};
 
   return (
       <div
@@ -52,7 +52,7 @@ export default function CourseCard({ course }) {
           <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
             <div className="flex items-center gap-2">
               <HiOutlineDocumentText className="text-lg text-primary" />
-              <span>Lessons</span>
+              <span>Lessons({lessons})</span>
             </div>
 
             {duration ? <span>{duration}</span> : null}
