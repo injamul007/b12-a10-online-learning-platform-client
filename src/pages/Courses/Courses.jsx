@@ -16,7 +16,7 @@ const Courses = () => {
   const [totalPage, setTotalPage] = useState(0)
   const [totalCourses, setTotalCourses] = useState(0)
   const [sort, setSort] = useState("durationInWeeks")
-  const [order, setOrder] = useState("")
+  const [order, setOrder] = useState("desc")
 
   useEffect(() => {
     setLoading(true);
@@ -69,13 +69,11 @@ const Courses = () => {
           <div>Search</div>
           <div>
             <select onChange={handleSorting} className="select">
-              <option selected disabled>Sort by  <span className="text-xs">P / D / L</span></option>
+              <option selected disabled>Sort by  <span className="text-xs">P / D</span></option>
               <option value={'price-desc'}>Price: High - Low</option>
               <option value={'price-asc'}>Price: Low - High</option>
               <option value={'durationInWeeks-desc'}>Duration: High - Low</option>
               <option value={'durationInWeeks-asc'}>Duration: Low - High</option>
-              <option value={'lessons-desc'}>Lessons: High - Low</option>
-              <option value={'lessons-asc'}>Lessons: Low - High</option>
             </select>
           </div>
         </div>
