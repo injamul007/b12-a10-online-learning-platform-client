@@ -122,10 +122,10 @@ export default function CourseDetails() {
 
               <div className="flex items-center flex-wrap gap-2 lg:gap-4 text-sm mb-4">
                 <div className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-lg border text-primary">
-                  <FiClock /> <span>{course?.duration}</span>
+                  <FiClock /> <span>{course?.durationInWeeks} Weeks</span>
                 </div>
                 <div className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-lg border text-primary">
-                  <HiOutlineDocumentText className="text-lg text-primary" /> <span>Lessons({course?.lessons})</span>
+                  <HiOutlineDocumentText className="text-lg text-primary" /> <span>{course?.lessons} Lessons</span>
                 </div>
                 <div className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-lg border text-primary">
                   <FiTag /> <span>{course?.category}</span>
