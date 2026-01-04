@@ -40,7 +40,7 @@ const WhyChooseUs = () => {
 
           {/* Cards with motion */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 dark:bg-[#212224]"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"

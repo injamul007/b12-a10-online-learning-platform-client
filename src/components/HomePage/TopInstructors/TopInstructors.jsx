@@ -60,7 +60,7 @@ const TopInstructors = () => {
               {INSTRUCTORS.map((ins) => (
                 <motion.article
                   key={ins.id}
-                  className="rounded-2xl p-6 text-center shadow-sm hover:shadow-lg transition hover:border hover:border-white"
+                  className="rounded-2xl p-6 text-center shadow-sm hover:shadow-lg  dark:bg-[#212224]"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 >
