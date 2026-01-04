@@ -96,35 +96,40 @@ const Footer = () => {
                   <div className="flex items-center gap-3 mt-2">
                     <a
                       aria-label="Facebook"
-                      href="#"
+                      href="https://www.facebook.com/"
+                      target="_blank"
                       className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
                     >
                       <FaFacebookF />
                     </a>
                     <a
                       aria-label="Twitter"
-                      href="#"
+                      href="https://x.com/"
+                      target="_blank"
                       className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
                     >
                       <FaXTwitter />
                     </a>
                     <a
                       aria-label="LinkedIn"
-                      href="#"
+                      href="https://www.linkedin.com/"
+                      target="_blank"
                       className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
                     >
                       <FaLinkedinIn />
                     </a>
                     <a
                       aria-label="Instagram"
-                      href="#"
+                      href="https://www.instagram.com/"
+                      target="_blank"
                       className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
                     >
                       <FaInstagram />
                     </a>
                     <a
                       aria-label="YouTube"
-                      href="#"
+                      href="https://www.youtube.com/"
+                      target="_blank"
                       className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
                     >
                       <FaYoutube />
@@ -154,12 +159,18 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/courses" className="hover:text-secondary transition">
+                      <Link
+                        to="/courses"
+                        className="hover:text-secondary transition"
+                      >
                         Featured
                       </Link>
                     </li>
                     <li>
-                      <Link to="about-us" className="hover:text-secondary transition">
+                      <Link
+                        to="about-us"
+                        className="hover:text-secondary transition"
+                      >
                         About
                       </Link>
                     </li>
@@ -206,30 +217,30 @@ const Footer = () => {
                   </ul>
                 </div>
 
-              <div className="col-span-2">
-                <h4 className="font-semibold text-sm">Contact Info</h4>
-              <div className="mt-3 text-sm text-text/80 dark:text-base-400/80 space-y-2">
-                <div>
-                  Email:{" "}
-                  <a
-                    href="mailto:support@microloan.example"
-                    className="text-primary dark:text-primary hover:underline"
-                  >
-                    support@skilledhub.com.bd
-                  </a>
+                <div className="col-span-2">
+                  <h4 className="font-semibold text-sm">Contact Info</h4>
+                  <div className="mt-3 text-sm text-text/80 dark:text-base-400/80 space-y-2">
+                    <div>
+                      Email:{" "}
+                      <a
+                        href="mailto:support@microloan.example"
+                        className="text-primary dark:text-primary hover:underline"
+                      >
+                        support@skilledhub.com.bd
+                      </a>
+                    </div>
+                    <div>
+                      Phone:{" "}
+                      <a
+                        href="tel:+880123456789"
+                        className="text-primary dark:text-primary hover:underline"
+                      >
+                        +880 1234 567 890
+                      </a>
+                    </div>
+                    <div>Address: 24/B Finance Street, Dhaka, Bangladesh</div>
+                  </div>
                 </div>
-                <div>
-                  Phone:{" "}
-                  <a
-                    href="tel:+880123456789"
-                    className="text-primary dark:text-primary hover:underline"
-                  >
-                    +880 1234 567 890
-                  </a>
-                </div>
-                <div>Address: 24/B Finance Street, Dhaka, Bangladesh</div>
-              </div>
-              </div>
               </div>
 
               {/* Newsletter in footer */}
