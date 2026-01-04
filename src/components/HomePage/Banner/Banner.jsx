@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
-import MyContainer from "../MyContainer/MyContainer";
-import useAuth from "../../hook/useAuth";
+import MyContainer from "../../MyContainer/MyContainer";
+import useAuth from "../../../hook/useAxios";
 import { motion } from "framer-motion";
 
 const Banner = () => {

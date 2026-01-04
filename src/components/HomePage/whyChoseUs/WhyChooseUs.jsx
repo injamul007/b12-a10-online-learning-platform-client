@@ -5,7 +5,7 @@ import {
   FaRocket,
   FaHandsHelping,
 } from "react-icons/fa";
-import MyContainer from "../MyContainer/MyContainer";
+import MyContainer from "../../MyContainer/MyContainer";
 import { motion } from "framer-motion";
 
 const WhyChooseUs = () => {

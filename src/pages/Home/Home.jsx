@@ -1,8 +1,8 @@
 import React from "react";
-import Banner from "../../components/Banner/Banner";
-import WhyChooseUs from "../../components/whyChoodeUs/WhyChooseUs";
-import PopularCourse from "../../components/PopularCourse/PopularCourse";
-import TopInstructors from "../../components/TopInstructors/TopInstructors";
+import Banner from "../../components/HomePage/Banner/Banner";
+import WhyChooseUs from "../../components/HomePage/whyChoseUs/WhyChooseUs";
+import PopularCourse from "../../components/HomePage/PopularCourse/PopularCourse";
+import TopInstructors from "../../components/HomePage/TopInstructors/TopInstructors";
 import { motion } from "framer-motion";
 
 const Home = () => {

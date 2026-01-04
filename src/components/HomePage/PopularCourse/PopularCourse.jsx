@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import MyContainer from "../MyContainer/MyContainer";
-import useAxios from "../../hook/useAxios";
-import LoadSpinner from "../LoadSpinner/LoadSpinner";
-import CourseCard from "../courseCard/CourseCard";
+import useAxios from "../../../hook/useAxios";
+import LoadSpinner from "../../LoadSpinner/LoadSpinner";
+import CourseCard from "../../courseCard/CourseCard";
 import { motion } from "framer-motion";
+import MyContainer from "../../MyContainer/MyContainer";
 
 const PopularCourse = () => {
   const axiosInstance = useAxios();

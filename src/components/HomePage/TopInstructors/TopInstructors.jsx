@@ -1,6 +1,6 @@
 import React from "react";
 import { FaStar, FaTwitter, FaLinkedin } from "react-icons/fa";
-import MyContainer from "../MyContainer/MyContainer";
+import MyContainer from "../../MyContainer/MyContainer";
 import { motion } from "framer-motion";
 
 const INSTRUCTORS = [
@@ -8,7 +8,7 @@ const INSTRUCTORS = [
     id: 1,
     name: "Md. Rahim",
     title: "Senior MERN Instructor",
-    avatar: "https://i.ibb.co/bN9JNsZ/portfolio-course.jpg",
+    avatar: "https://i.ibb.co.com/Sw9r2FY2/manager-profile-pic.jpg",
     bio: "5+ years building production MERN apps. Projects, tips and career guidance.",
     rating: 4.9,
   },
