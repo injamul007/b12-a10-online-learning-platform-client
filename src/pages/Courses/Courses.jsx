@@ -20,6 +20,9 @@ const Courses = () => {
   const [order, setOrder] = useState("desc");
   const [searchText, setSearchText] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [filter, setFilter] = useState("");
+  const [priceRange, setPriceRange] = useState("");
+
 
   useEffect(() => {
     setLoading(true);
@@ -27,7 +30,7 @@ const Courses = () => {
       const skip = currentPage * limit;
       axiosInstance
         .get(
-          `/courses?limit=${limit}&skip=${skip}&sort=${sort}&order=${order}&search=${debouncedSearch}`
+          `/courses?limit=${limit}&skip=${skip}&sort=${sort}&order=${order}&search=${debouncedSearch}&filter=${filter}&price=${priceRange}`
         )
         .then((data) => {
           setCoursesData(data.data.result);
@@ -41,7 +44,7 @@ const Courses = () => {
           setLoading(false);
         });
     }, 600);
-  }, [axiosInstance, currentPage, limit, sort, order, debouncedSearch]);
+  }, [axiosInstance, currentPage, limit, sort, order, debouncedSearch, filter, priceRange]);
 
   const handleSorting = (e) => {
     const sortText = e.target.value;
@@ -50,18 +53,29 @@ const Courses = () => {
   };
 
   useEffect(() => {
-  const timer = setTimeout(() => {
-    setDebouncedSearch(searchText);
-  }, 500); // 500ms delay
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchText);
+    }, 500); // 500ms delay
 
-  return () => clearTimeout(timer);
-}, [searchText]);
-
+    return () => clearTimeout(timer);
+  }, [searchText]);
 
   const handleSearch = (e) => {
     setSearchText(e.target.value);
-    setCurrentPage(0) // reset current page
+    setCurrentPage(0); // reset current page
   };
+
+  const handleCategoryFilter = (e) => {
+    const filterValue = e.target.value;
+    setFilter(filterValue);
+    setCurrentPage(0);
+  };
+
+  const handlePriceFilter = (e) => {
+  setPriceRange(e.target.value);
+  setCurrentPage(0);
+  };
+
 
   // motion variants
   const containerVariants = {
@@ -86,8 +100,46 @@ const Courses = () => {
           <span className="text-secondary">({totalCourses})</span>
         </p>
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mb-12">
-          <div>Filter</div>
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 place-items-center mb-12 gap-4">
+          <div>
+            <select onChange={handleCategoryFilter} className="select">
+              <option value={''}>
+                Filter by Category
+              </option>
+              <option value={"web development"}>Web Development</option>
+              <option value={"programming"}>Programming</option>
+              <option value={"frontend development"}>
+                Frontend Development
+              </option>
+              <option value={"backend development"}>Backend Development</option>
+              <option value={"database"}>Database</option>
+              <option value={"design"}>Design</option>
+              <option value={"data science"}>Data Science</option>
+              <option value={"ai-machine learning"}>
+                AI & Machine Learning
+              </option>
+              <option value={"full stack"}>Full Stack</option>
+              <option value={"backend-as-a-service"}>
+                Backend-as-a-Service
+              </option>
+              <option value={"tools"}>Tools</option>
+              <option value={"career development"}>Career Development</option>
+              <option value={"devOps"}>DevOps</option>
+              <option value={"state management"}>State Management</option>
+            </select>
+          </div>
+          <div>
+            <select
+              onChange={handlePriceFilter}
+              className="select"
+            >
+              <option value="">Filter by Price</option>
+              <option value="0-30">Under $30</option>
+              <option value="30-80">$30 - $80</option>
+              <option value="80-120">$80 - $120</option>
+              <option value="120-9999">$120+</option>
+            </select>
+          </div>
           <div>
             <label className="input">
               <IoSearchOutline size={20} />
@@ -118,10 +170,10 @@ const Courses = () => {
 
         {loading ? (
           <LoadSpinner></LoadSpinner>
-        ) : coursesData.length === 0 && searchText ? (
+        ) : coursesData.length === 0 &&  (searchText || priceRange || filter)  ? (
           <div className="text-center text-gray-500 my-20">
             <h3 className="text-2xl font-semibold">No course found 😕</h3>
-            <p className="mt-2">Try searching with a different keyword</p>
+            <p className="mt-2">Try searching or filtering with a different value</p>
           </div>
         ) : (
           <motion.div
