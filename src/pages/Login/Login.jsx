@@ -17,7 +17,7 @@ const Login = () => {
 
   const { setUser, setLoading, loginUserFunc, googleSignInFunc } = useAuth();
 
-  // Demo credentials (must exist in Firebase)
+  // Demo credentials
   const DEMO_USER = {
     email: "demo@user.com",
     password: "demo&User123#",
