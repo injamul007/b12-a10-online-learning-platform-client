@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 
 const axiosInstance = axios.create({
-  baseURL: `${import.meta.env.VITE_SERVER_API_URL}`,
+  baseURL: `https://skilledhub-online-learning-platform.vercel.app`,
 });
 
 const useAxios = () => {

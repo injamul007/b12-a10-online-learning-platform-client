@@ -3,7 +3,7 @@ import React from "react";
 import useAuth from "./useAuth";
 
 const axiosInstanceSecure = axios.create({
-  baseURL: `${import.meta.env.VITE_SERVER_API_URL}`,
+  baseURL: `https://skilledhub-online-learning-platform.vercel.app`,
 });
 
 const useAxiosSecure = () => {
