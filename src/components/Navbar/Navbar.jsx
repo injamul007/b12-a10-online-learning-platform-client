@@ -12,6 +12,9 @@ import Swal from "sweetalert2";
 import { ClockLoader } from "react-spinners";
 import { FaSun, FaMoon } from "react-icons/fa";
 import useAuth from "../../hook/useAuth";
+import { SiGnuprivacyguard } from "react-icons/si";
+import { RiAlignItemLeftLine } from "react-icons/ri";
+import { FaUsers } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, setUser, loading, logOutUserFunc } = useAuth();
@@ -21,7 +24,7 @@ const Navbar = () => {
     <>
       <li>
         <NavLink to={"/"}>
-          <GoHomeFill size={20}/>
+          <GoHomeFill size={20} />
           Home
         </NavLink>
       </li>
@@ -30,11 +33,26 @@ const Navbar = () => {
           <TiContacts size={22} /> Courses
         </NavLink>
       </li>
-      <li>
-        <NavLink to={"/dashboard"}>
-          <MdDashboard size={20} /> Dashboard
+      <li className="md:hidden lg:flex">
+        <NavLink to={"/about-us"}>
+          <FaUsers size={20} /> About Us
         </NavLink>
       </li>
+
+      {user && user?.email && (
+        <>
+          <li>
+            <NavLink to={"/dashboard"}>
+              <MdDashboard size={20} /> Dashboard
+            </NavLink>
+          </li>
+          <li className="lg:flex md:hidden">
+            <NavLink to={"/dashboard/my-enrolled"}>
+              <RiAlignItemLeftLine size={20} />My Courses
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -119,7 +137,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="navbar-center hidden md:flex">
-            <ul className="menu menu-horizontal px-1 gap-6">{links}</ul>
+            <ul className="menu menu-horizontal px-1 gap-3">{links}</ul>
           </div>
           <div className="navbar-end gap-3">
             <div>
@@ -170,7 +188,7 @@ const Navbar = () => {
                     </div>
                     <li className="my-2">
                       <NavLink to={"/dashboard/my-profile"}>
-                        <FaUser /> Profile
+                        <FaUser size={16} /> Profile
                       </NavLink>
                     </li>
                     <li>
@@ -178,7 +196,7 @@ const Navbar = () => {
                         onClick={handleLogOutUser}
                         className="btn btn-sm my-btn flex lg:hidden"
                       >
-                        <IoLogOut /> Logout
+                        <IoLogOut size={20} /> Logout
                       </button>
                     </li>
                   </ul>
@@ -187,14 +205,24 @@ const Navbar = () => {
                   onClick={handleLogOutUser}
                   className="btn my-btn hidden lg:flex"
                 >
-                  <IoLogOut /> Logout
+                  <IoLogOut size={22} /> Logout
                 </button>
               </>
             ) : (
               <>
-                <Link to={"/login"} className="btn btn-sm md:btn-md lg:btn-md my-btn">
+                <Link
+                  to={"/login"}
+                  className="btn btn-sm md:btn-md lg:btn-md my-btn"
+                >
                   {" "}
-                  <IoLogIn /> Login
+                  <IoLogIn size={22} /> Login
+                </Link>
+                <Link
+                  to={"/register"}
+                  className="btn btn-sm md:btn-md lg:btn-md rounded-3xl hover:bg-[#f97316] border border-gray-300 md:hidden hidden lg:flex dark:bg-[#303233]"
+                >
+                  {" "}
+                  <SiGnuprivacyguard size={20} /> Register
                 </Link>
               </>
             )}

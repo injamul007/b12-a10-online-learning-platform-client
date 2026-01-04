@@ -16,6 +16,7 @@ import CourseDetails from "../pages/CourseDetails/CourseDetails";
 import MyAddedCourses from "../pages/MyAddedCourses/MyAddedCourses";
 import UpdateCourse from "../pages/UpdateCourse/UpdateCourse";
 import LoadSpinner from "../components/LoadSpinner/LoadSpinner";
+import AboutUs from "../pages/AboutUS/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses></Courses>,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs></AboutUs>,
       },
       {
         path: "/courses/:id",
