@@ -22,7 +22,7 @@ const Profile = () => {
       <div>
         <title>SkilledHub || My-Profile</title>
         <div className="flex justify-center items-center flex-col lg:flex-row lg:gap-16 gap-2 lg:py-0 py-4 mt-20">
-          <div className="text-center shadow-2xl p-4 bg-linear-to-r from-accent to-accent rounded-2xl lg:w-fit md:w-1/2 w-full">
+          <div className="text-center shadow-2xl p-4 bg-linear-to-r from-accent to-accent dark:bg-linear-to-r dark:from-[#303233] dark:to-[#303233] rounded-2xl lg:w-fit md:w-1/2 w-full">
             <img
               className="lg:w-40 lg:h-40 w-30 h-30 rounded-full mx-auto mb-2"
               src={user?.photoURL || profileIcon}
@@ -36,7 +36,7 @@ const Profile = () => {
             <button
               type="button"
               onClick={handleUpdateProfile}
-              className="relative z-50 pointer-events-auto px-4 py-2 border rounded text-gray-200 bg-[#059669] transition-all duration-300 hover:bg-linear-to-r hover:from-accent hover:to-primary hover:text-black cursor-pointer">
+              className="relative z-50 pointer-events-auto px-4 py-2 border rounded text-gray-200 bg-[#059669] dark:bg-[#303233] transition-all duration-300 hover:bg-linear-to-r hover:from-accent hover:to-primary hover:text-black cursor-pointer">
               Update Profile
             </button>
           </div>
