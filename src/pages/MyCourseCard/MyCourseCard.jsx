@@ -3,10 +3,10 @@ import { Link } from "react-router";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 
 const MyCourseCard = ({ course, handleDelete }) => {
-  const { _id, title, price, imageURL, duration, category } = course || {};
+  const { _id, title, price, imageURL, durationInWeeks, category } = course || {};
 
   return (
-    <div className="group rounded-2xl overflow-hidden shadow-sm hover:shadow-lg shadow-gray-500 transform hover:-translate-y-1 transition-all duration-200 hover:border-white hover:border bg-white/3 backdrop-blur">
+    <div className="group rounded-2xl overflow-hidden shadow-sm hover:shadow-md shadow-gray-500 transform hover:-translate-y-1 transition-all duration-200 bg-white/3 backdrop-blur">
       {/* <title>SkilledHub || My Course Card</title> */}
       {/* Image */}
       <img src={imageURL} alt={title} className="w-full h-44 object-cover" />
@@ -16,7 +16,7 @@ const MyCourseCard = ({ course, handleDelete }) => {
         <h3 className="text-lg font-semibold line-clamp-1">{title}</h3>
         <p className="text-sm text-gray-400 mb-3">{category}</p>
         <div className="flex justify-between items-center text-sm mb-3">
-          <span>{duration}</span>
+          <span>{durationInWeeks} Weeks</span>
           <span className="font-semibold text-[#059669]">${price}</span>
         </div>
 
@@ -27,7 +27,7 @@ const MyCourseCard = ({ course, handleDelete }) => {
             to={`/courses/${_id}`}
             className="text-primary font-medium text-sm hover:text-[#059669]"
           >
-            View
+            View Details
           </Link>
           <div className="flex gap-3">
             <Link
