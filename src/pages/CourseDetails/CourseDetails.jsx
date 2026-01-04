@@ -73,7 +73,7 @@ export default function CourseDetails() {
   if (loading) return <LoadSpinner></LoadSpinner>;
 
   return (
-    <MyContainer>
+    <MyContainer className={'pt-18'}>
       <title>SkilledHub || Course Details</title>
       <div className="px-4 py-10">
         <Link
