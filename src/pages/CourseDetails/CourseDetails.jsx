@@ -29,7 +29,7 @@ export default function CourseDetails() {
         .finally(() => {
           setLoading(false);
         });
-    }, 1000);
+    }, 600);
   }, [id, axiosInstance]);
 
   const handleEnroll = () => {
