@@ -188,7 +188,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-linear-to-br from-[#F97316] to-[#0EA5A4]">
+    <div className="flex items-center justify-center bg-linear-to-br from-[#F97316] to-[#0EA5A4] lg:mt-19 md:mt-19 mt-16 pb-6 dark:bg-linear-to-br dark:from-[#212224] dark:to-[#303233]">
       <title>SkilledHub || Register</title>
       <MyContainer>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 p-6 lg:p-10 text-white">
@@ -288,7 +288,7 @@ const Register = () => {
                 Already have an account? Please{" "}
                 <Link
                   to="/login"
-                  className="text-emerald-900 hover:text-white underline"
+                  className="text-emerald-900 dark:text-emerald-500 hover:text-white underline"
                 >
                   Login
                 </Link>

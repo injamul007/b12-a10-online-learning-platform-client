@@ -162,7 +162,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-linear-to-br from-[#059669] to-[#0ea5a4]">
+    <div className="flex items-center justify-center bg-linear-to-br from-[#059669] to-[#0ea5a4] lg:mt-19 md:mt-19 mt-16 pb-6 dark:bg-linear-to-br dark:from-[#212224] dark:to-[#303233]">
       <title>SkilledHub || Login</title>
       <MyContainer>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 p-6 lg:p-10 text-white">
@@ -254,7 +254,7 @@ const Login = () => {
                 New to our Website? Please{" "}
                 <Link
                   to="/register"
-                  className="text-emerald-900 hover:text-white underline"
+                  className="dark:text-emerald-600 text-emerald-800 hover:text-white underline"
                 >
                   Register
                 </Link>

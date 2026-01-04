@@ -196,14 +196,14 @@ const Courses = () => {
           {/* prev button */}
           <button
             onClick={() => setCurrentPage(currentPage - 1)}
-            className={`btn ${currentPage < 1 && "hidden"}`}
+            className={`btn dark:bg-gray-700 ${currentPage < 1 && "hidden"}`}
           >
             Prev
           </button>
           {[...Array(totalPage)].keys().map((page) => (
             <button
-              className={`btn ${
-                page === currentPage && "bg-primary hover:bg-green-500"
+              className={`btn dark:bg-gray-700 ${
+                page === currentPage && "bg-primary dark:bg-primary hover:bg-green-500"
               }`}
               key={page}
               onClick={() => setCurrentPage(page)}
@@ -215,7 +215,7 @@ const Courses = () => {
           {currentPage < totalPage - 1 && (
             <button
               onClick={() => setCurrentPage(currentPage + 1)}
-              className="btn"
+              className="btn dark:bg-gray-700"
             >
               Next
             </button>

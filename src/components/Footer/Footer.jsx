@@ -50,7 +50,7 @@ const Footer = () => {
       transition={{ duration: 0.8 }}
       variants={fadeUp}
     >
-      <footer className="relative bg-linear-to-tl from-[#071422] via-[#071a2a]/90 to-[#021621] text-white">
+      <footer className="relative bg-linear-to-tl from-[#071422] via-[#071a2a]/90 to-[#021621] text-white dark:bg-linear-to-br dark:from-[#212224] dark:to-[#303233]">
         {/* decorative top curve */}
         <div className="absolute -top-6 left-0 right-0 pointer-events-none">
           <svg

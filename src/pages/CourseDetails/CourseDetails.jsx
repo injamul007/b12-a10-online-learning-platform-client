@@ -83,7 +83,7 @@ export default function CourseDetails() {
           <FiChevronLeft /> Back to Courses
         </Link>
 
-        <div className="bg-linear-to-br from-white/3 to-white/2 rounded-2xl overflow-hidden shadow-2xl">
+        <div className="bg-linear-to-br from-white/3 to-white/2 rounded-2xl overflow-hidden shadow-2xl dark:bg-[#212224]">
           <div className="md:flex">
             {/* Left side image */}
             <div className="md:w-1/2 relative">
