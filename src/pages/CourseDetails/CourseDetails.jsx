@@ -133,7 +133,7 @@ export default function CourseDetails() {
                 <div className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-lg border text-primary">
                   <FiDollarSign />{" "}
                   <span className="font-semibold">
-                    {course?.price ? `$${course?.price}` : "Free"}
+                    {course?.price ? `${course?.price}` : "Free"}
                   </span>
                 </div>
               </div>
