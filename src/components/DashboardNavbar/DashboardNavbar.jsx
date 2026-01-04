@@ -95,7 +95,7 @@ const DashboardNavbar = ({ onOpenSidebar }) => {
                   </div>
                   <ul
                     tabIndex="-1"
-                    className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-fit p-2 shadow"
+                    className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-fit p-2 shadow text-gray-700 dark:bg-[#303233] dark:text-gray-200"
                   >
                     <div className=" pb-3 border-b border-b-gray-200">
                       <li className="text-sm font-bold">{user.displayName}</li>
