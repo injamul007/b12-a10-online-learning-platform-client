@@ -23,7 +23,6 @@ const Courses = () => {
   const [filter, setFilter] = useState("");
   const [priceRange, setPriceRange] = useState("");
 
-
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -44,7 +43,16 @@ const Courses = () => {
           setLoading(false);
         });
     }, 600);
-  }, [axiosInstance, currentPage, limit, sort, order, debouncedSearch, filter, priceRange]);
+  }, [
+    axiosInstance,
+    currentPage,
+    limit,
+    sort,
+    order,
+    debouncedSearch,
+    filter,
+    priceRange,
+  ]);
 
   const handleSorting = (e) => {
     const sortText = e.target.value;
@@ -72,10 +80,9 @@ const Courses = () => {
   };
 
   const handlePriceFilter = (e) => {
-  setPriceRange(e.target.value);
-  setCurrentPage(0);
+    setPriceRange(e.target.value);
+    setCurrentPage(0);
   };
-
 
   // motion variants
   const containerVariants = {
@@ -103,9 +110,7 @@ const Courses = () => {
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 place-items-center mb-12 gap-4">
           <div>
             <select onChange={handleCategoryFilter} className="select">
-              <option value={''}>
-                Filter by Category
-              </option>
+              <option value={""}>Filter by Category</option>
               <option value={"web development"}>Web Development</option>
               <option value={"programming"}>Programming</option>
               <option value={"frontend development"}>
@@ -129,10 +134,7 @@ const Courses = () => {
             </select>
           </div>
           <div>
-            <select
-              onChange={handlePriceFilter}
-              className="select"
-            >
+            <select onChange={handlePriceFilter} className="select">
               <option value="">Filter by Price</option>
               <option value="0-30">Under $30</option>
               <option value="30-80">$30 - $80</option>
@@ -170,10 +172,12 @@ const Courses = () => {
 
         {loading ? (
           <LoadSpinner></LoadSpinner>
-        ) : coursesData.length === 0 &&  (searchText || priceRange || filter)  ? (
+        ) : coursesData.length === 0 && (searchText || priceRange || filter) ? (
           <div className="text-center text-gray-500 my-20">
             <h3 className="text-2xl font-semibold">No course found 😕</h3>
-            <p className="mt-2">Try searching or filtering with a different value</p>
+            <p className="mt-2">
+              Try searching or filtering with a different value
+            </p>
           </div>
         ) : (
           <motion.div
@@ -181,7 +185,8 @@ const Courses = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.5 }}
           >
             {coursesData.map((course) => (
               <motion.div key={course._id} variants={fadeUp}>
@@ -203,7 +208,8 @@ const Courses = () => {
           {[...Array(totalPage)].keys().map((page) => (
             <button
               className={`btn dark:bg-gray-700 ${
-                page === currentPage && "bg-primary dark:bg-primary hover:bg-green-500"
+                page === currentPage &&
+                "bg-primary dark:bg-primary hover:bg-green-500"
               }`}
               key={page}
               onClick={() => setCurrentPage(page)}
