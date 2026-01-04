@@ -21,18 +21,18 @@ const Navbar = () => {
     <>
       <li>
         <NavLink to={"/"}>
-          <GoHomeFill />
+          <GoHomeFill size={20}/>
           Home
         </NavLink>
       </li>
       <li>
         <NavLink to={"/courses"}>
-          <TiContacts /> Courses
+          <TiContacts size={22} /> Courses
         </NavLink>
       </li>
       <li>
         <NavLink to={"/dashboard"}>
-          <MdDashboard /> Dashboard
+          <MdDashboard size={20} /> Dashboard
         </NavLink>
       </li>
     </>
@@ -70,7 +70,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar shadow-sm glass-card relative z-1000">
+    <div className="navbar shadow-sm glass-card dark:bg-[#303233] border-b border-gray-200 dark:border-gray-700 fixed top-0 left-0 w-full z-1000">
       <MyContainer>
         <div className="flex justify-between items-center py-1">
           <div className="navbar-start">

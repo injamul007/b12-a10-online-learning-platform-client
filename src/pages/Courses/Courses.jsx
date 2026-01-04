@@ -91,7 +91,7 @@ const Courses = () => {
   };
 
   return (
-    <div>
+    <div className="pt-19">
       <MyContainer>
         <title>SkilledHub || Courses</title>
         <h2 className="text-3xl text-center font-bold mt-10">All Courses</h2>

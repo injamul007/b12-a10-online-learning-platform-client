@@ -51,7 +51,7 @@ const Banner = () => {
       transition={{ duration: 0.8 }}
       variants={fadeUp}
     >
-      <div className="carousel w-full">
+      <div className="carousel w-full lg:pt-19 md:pt-19 pt-16">
         {slides.map((slide, index) => (
           <div
             id={`slide${index + 1}`}
