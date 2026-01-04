@@ -9,161 +9,96 @@ import useAuth from "../../hook/useAuth";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const location = useLocation();
   const navigate = useNavigate();
 
   const { setUser, setLoading, loginUserFunc, googleSignInFunc } = useAuth();
 
+  // Demo credentials (must exist in Firebase)
+  const DEMO_USER = {
+    email: "demo@user.com",
+    password: "demo&User123#",
+  };
+
+  // Demo autofill handler
+  const handleDemoFill = (role) => {
+    if (role === "user") {
+      setEmail(DEMO_USER.email);
+      setPassword(DEMO_USER.password);
+    }
+  };
+
+  // Email/Password login
   const handleLogin = (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    setLoading(true);
 
-    loginUserFunc(email, password) 
+    loginUserFunc(email, password)
       .then((result) => {
         const userData = result.user;
-        setLoading(false);
         setUser(userData);
+
         Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Login Successfully",
           showConfirmButton: false,
           timer: 1500,
-          customClass: {
-            popup: "small-swal-popup",
-          },
+          customClass: { popup: "small-swal-popup" },
         });
-        e.target.reset();
-        navigate(`${location.state ? location.state : "/"}`);
+
+        navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
         if (error.code === "auth/invalid-credential") {
           toast.error("Invalid credential. Please try again.");
-        } else if (error.code === "auth/email-already-in-use") {
-          toast.error(
-            "This email is already registered. Try logging in instead."
-          );
-        } else if (error.code === "auth/weak-password") {
-          toast.error("Password must be at least 6 characters long.");
         } else if (error.code === "auth/user-not-found") {
           toast.error("No account found with this email.");
         } else if (error.code === "auth/wrong-password") {
-          toast.error("Incorrect password. Please try again.");
+          toast.error("Incorrect password.");
         } else if (error.code === "auth/invalid-email") {
-          toast.error("Invalid email format. Please check your email.");
-        } else if (error.code === "auth/missing-email") {
-          toast.error("Email is required. Please enter your email.");
-        } else if (error.code === "auth/missing-password") {
-          toast.error("Password is required. Please enter your password.");
+          toast.error("Invalid email format.");
         } else if (error.code === "auth/too-many-requests") {
-          toast.error("Too many login attempts. Please try again later.");
-        } else if (error.code === "auth/user-disabled") {
-          toast.error("This account has been disabled. Contact support.");
-        } else if (error.code === "auth/operation-not-allowed") {
-          toast.error("Email/password accounts are not enabled.");
-        } else if (error.code === "auth/popup-closed-by-user") {
-          toast.error("Popup closed before completing sign-in.");
-        } else if (error.code === "auth/cancelled-popup-request") {
-          toast.error("Sign-in popup was closed or canceled.");
-        } else if (
-          error.code === "auth/account-exists-with-different-credential"
-        ) {
-          toast.error(
-            "An account already exists with the same email but different sign-in method."
-          );
-        } else if (error.code === "auth/invalid-verification-code") {
-          toast.error("Invalid verification code. Please try again.");
-        } else if (error.code === "auth/invalid-verification-id") {
-          toast.error("Invalid verification ID. Please try again.");
-        } else if (error.code === "auth/network-request-failed") {
-          toast.error("Network error. Please check your internet connection.");
-        } else if (error.code === "auth/requires-recent-login") {
-          toast.error("Please log in again to complete this action.");
-        } else if (error.code === "auth/credential-already-in-use") {
-          toast.error("This credential is already linked to another user.");
-        } else if (error.code === "auth/invalid-action-code") {
-          toast.error("The action code is invalid or expired.");
+          toast.error("Too many attempts. Try again later.");
         } else {
           toast.error("Something went wrong. Please try again.");
         }
-      }).finally(()=>setLoading(false))
+      })
+      .finally(() => setLoading(false));
   };
 
+  // Google login
   const handleGoogleSignin = () => {
+    setLoading(true);
+
     googleSignInFunc()
       .then((result) => {
-        const userData = result.user;
-        setLoading(false);
-        setUser(userData);
+        setUser(result.user);
+
         Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Google Login Successful",
           showConfirmButton: false,
           timer: 1500,
-          customClass: {
-            popup: "small-swal-popup",
-          },
+          customClass: { popup: "small-swal-popup" },
         });
-        navigate(`${location.state ? location.state : "/"}`);
+
+        navigate(location.state ? location.state : "/");
       })
-      .catch((error) => {
-        if (error.code === "auth/invalid-credential") {
-          toast.error("Invalid credential. Please try again.");
-        } else if (error.code === "auth/email-already-in-use") {
-          toast.error(
-            "This email is already registered. Try logging in instead."
-          );
-        } else if (error.code === "auth/weak-password") {
-          toast.error("Password must be at least 6 characters long.");
-        } else if (error.code === "auth/user-not-found") {
-          toast.error("No account found with this email.");
-        } else if (error.code === "auth/wrong-password") {
-          toast.error("Incorrect password. Please try again.");
-        } else if (error.code === "auth/invalid-email") {
-          toast.error("Invalid email format. Please check your email.");
-        } else if (error.code === "auth/missing-email") {
-          toast.error("Email is required. Please enter your email.");
-        } else if (error.code === "auth/missing-password") {
-          toast.error("Password is required. Please enter your password.");
-        } else if (error.code === "auth/too-many-requests") {
-          toast.error("Too many login attempts. Please try again later.");
-        } else if (error.code === "auth/user-disabled") {
-          toast.error("This account has been disabled. Contact support.");
-        } else if (error.code === "auth/operation-not-allowed") {
-          toast.error("Email/password accounts are not enabled.");
-        } else if (error.code === "auth/popup-closed-by-user") {
-          toast.error("Popup closed before completing sign-in.");
-        } else if (error.code === "auth/cancelled-popup-request") {
-          toast.error("Sign-in popup was closed or canceled.");
-        } else if (
-          error.code === "auth/account-exists-with-different-credential"
-        ) {
-          toast.error(
-            "An account already exists with the same email but different sign-in method."
-          );
-        } else if (error.code === "auth/invalid-verification-code") {
-          toast.error("Invalid verification code. Please try again.");
-        } else if (error.code === "auth/invalid-verification-id") {
-          toast.error("Invalid verification ID. Please try again.");
-        } else if (error.code === "auth/network-request-failed") {
-          toast.error("Network error. Please check your internet connection.");
-        } else if (error.code === "auth/requires-recent-login") {
-          toast.error("Please log in again to complete this action.");
-        } else if (error.code === "auth/credential-already-in-use") {
-          toast.error("This credential is already linked to another user.");
-        } else if (error.code === "auth/invalid-action-code") {
-          toast.error("The action code is invalid or expired.");
-        } else {
-          toast.error("Something went wrong. Please try again.");
-        }
-      }).finally(()=>setLoading(false));
+      .catch(() => {
+        toast.error("Google sign-in failed.");
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
-    <div className="flex items-center justify-center bg-linear-to-br from-[#059669] to-[#0ea5a4] lg:mt-19 md:mt-19 mt-16 pb-6 dark:bg-linear-to-br dark:from-[#212224] dark:to-[#303233]">
+    <div className="flex items-center justify-center bg-linear-to-br from-[#059669] to-[#0ea5a4] lg:mt-19 md:mt-19 mt-16 pb-6 dark:from-[#212224] dark:to-[#303233]">
       <title>SkilledHub || Login</title>
+
       <MyContainer>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 p-6 lg:p-10 text-white">
           {/* Left section */}
@@ -171,76 +106,77 @@ const Login = () => {
             <h1 className="lg:text-4xl text-3xl font-extrabold">
               Welcome Back Learners!
             </h1>
-            <p className="mt-4 text-lg text-white">
-              Login to continue your learning journey. Manage your account, explore new
-              Courses, and more.
+            <p className="mt-4 text-lg">
+              Login to continue your learning journey.
             </p>
           </div>
 
-          {/* Login card */}
-          <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8 relative z-50">
-            <form onSubmit={handleLogin} className="space-y-[18px]">
-              <h2 className="text-2xl font-semibold mb-2 text-center text-white">
+          {/* Login Card */}
+          <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
+            <form onSubmit={handleLogin} className="space-y-4">
+              <h2 className="text-2xl font-semibold text-center">
                 Login Now!
               </h2>
 
+              {/* Email */}
               <div>
-                <label className="block text-sm mb-1">Email</label>
+                <label className="text-sm">Email</label>
                 <input
                   type="email"
-                  name="email"
-                  // ref={emailRef}
-                  // value={email}
-                  // onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="example@email.com"
-                  className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                  className="input input-bordered w-full bg-white/20 text-white placeholder-white/60"
                 />
               </div>
 
+              {/* Password */}
               <div className="relative">
-                <label className="block text-sm mb-1">Password</label>
+                <label className="text-sm">Password</label>
                 <input
                   type={showPassword ? "text" : "password"}
-                  name="password"
-                  placeholder="Your Password"
-                  className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Your password"
+                  className="input input-bordered w-full bg-white/20 text-white placeholder-white/60"
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2 top-9 cursor-pointer z-50"
+                  className="absolute right-3 top-9 cursor-pointer"
                 >
                   {showPassword ? <FaEye /> : <IoEyeOff />}
                 </span>
               </div>
 
-              <button
-                // onClick={handleResetPassword}
-                className="hover:underline cursor-pointer text-xs"
-                type="button"
-              >
-                Forget password?
-              </button>
+              {/* Demo Buttons */}
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => handleDemoFill("user")}
+                  className="w-full rounded-lg border border-white/40 py-2 text-sm hover:bg-white/20 cursor-pointer"
+                >
+                  Demo User
+                </button>
+              </div>
 
-              <button
-                type="submit"
-                className="my-btn w-full cursor-pointer active:scale-105"
-              >
+              {/* Login */}
+              <button type="submit" className="my-btn w-full cursor-pointer">
                 Login
               </button>
 
               {/* Divider */}
-              <div className="flex items-center justify-center gap-2 my-2">
+              <div className="flex items-center gap-2 justify-center">
                 <div className="h-px w-16 bg-white/30"></div>
-                <span className="text-sm text-white/70">or continue</span>
+                <span className="text-sm text-white/70">or</span>
                 <div className="h-px w-16 bg-white/30"></div>
               </div>
 
-              {/* Google Signin */}
+              {/* Google */}
               <button
                 type="button"
                 onClick={handleGoogleSignin}
-                className="flex items-center justify-center gap-3 bg-white text-gray-800 px-5 py-2 rounded-lg w-full font-semibold hover:bg-gray-200 transition-colors cursor-pointer"
+                className="flex items-center justify-center gap-3 bg-white text-gray-800 py-2 rounded-lg w-full font-semibold hover:bg-gray-200 cursor-pointer"
               >
                 <img
                   src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -250,11 +186,11 @@ const Login = () => {
                 Login with Google
               </button>
 
-              <p className="text-center text-sm text-white/80 mt-3">
-                New to our Website? Please{" "}
+              <p className="text-center text-sm mt-3">
+                New to our website?{" "}
                 <Link
                   to="/register"
-                  className="dark:text-emerald-600 text-emerald-800 hover:text-white underline"
+                  className="text-emerald-300 underline"
                 >
                   Register
                 </Link>
