@@ -62,7 +62,7 @@ export default function DashboardCourseCard({ course }) {
 
           <div className="flex items-center justify-between">
             <div>
-              <span className={`text-sm font-bold text-secondary`}>$ {course?.price && `Paid`}</span>
+              <span className={`text-sm font-bold text-secondary`}>$ {price && `Paid`}</span>
             </div>
 
             <Link
