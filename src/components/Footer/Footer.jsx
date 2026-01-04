@@ -154,12 +154,12 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="#" className="hover:text-secondary transition">
+                      <Link to="/courses" className="hover:text-secondary transition">
                         Featured
                       </Link>
                     </li>
                     <li>
-                      <Link to="#" className="hover:text-secondary transition">
+                      <Link to="about-us" className="hover:text-secondary transition">
                         About
                       </Link>
                     </li>
@@ -206,61 +206,30 @@ const Footer = () => {
                   </ul>
                 </div>
 
+              <div className="col-span-2">
+                <h4 className="font-semibold text-sm">Contact Info</h4>
+              <div className="mt-3 text-sm text-text/80 dark:text-base-400/80 space-y-2">
                 <div>
-                  <h4 className="text-sm font-semibold text-white/90 mb-3">
-                    Support
-                  </h4>
-                  <ul className="space-y-2 text-sm text-white/70">
-                    <li>
-                      <Link to="#" className="hover:text-secondary transition">
-                        Docs
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#" className="hover:text-secondary transition">
-                        Help Center
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#" className="hover:text-secondary transition">
-                        Contact
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#" className="hover:text-secondary transition">
-                        Privacy
-                      </Link>
-                    </li>
-                  </ul>
+                  Email:{" "}
+                  <a
+                    href="mailto:support@microloan.example"
+                    className="text-primary dark:text-primary hover:underline"
+                  >
+                    support@skilledhub.com.bd
+                  </a>
                 </div>
-
                 <div>
-                  <h4 className="text-sm font-semibold text-white/90 mb-3">
-                    Community
-                  </h4>
-                  <ul className="space-y-2 text-sm text-white/70">
-                    <li>
-                      <Link to="#" className="hover:text-secondary transition">
-                        Blog
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#" className="hover:text-secondary transition">
-                        Events
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#" className="hover:text-secondary transition">
-                        Partners
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#" className="hover:text-secondary transition">
-                        Careers
-                      </Link>
-                    </li>
-                  </ul>
+                  Phone:{" "}
+                  <a
+                    href="tel:+880123456789"
+                    className="text-primary dark:text-primary hover:underline"
+                  >
+                    +880 1234 567 890
+                  </a>
                 </div>
+                <div>Address: 24/B Finance Street, Dhaka, Bangladesh</div>
+              </div>
+              </div>
               </div>
 
               {/* Newsletter in footer */}
