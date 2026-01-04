@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
 import MyContainer from "../../components/MyContainer/MyContainer";
-import CourseCard from "../../components/courseCard/CourseCard";
 import useAuth from "../../hook/useAuth";
+import DashboardCourseCard from "../DashboardCourseCard/DashboardCourseCard";
 
 const MyEnrolledCourse = () => {
   const {user} = useAuth();
@@ -36,7 +36,7 @@ const MyEnrolledCourse = () => {
 
       <MyContainer>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-          {myCourse.map((course) => <CourseCard key={course._id} course={course}></CourseCard>)}
+          {myCourse.map((course) => <DashboardCourseCard key={course._id} course={course}></DashboardCourseCard>)}
         </div>
       </MyContainer>
     </div>

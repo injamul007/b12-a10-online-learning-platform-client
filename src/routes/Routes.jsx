@@ -17,6 +17,9 @@ import MyAddedCourses from "../pages/MyAddedCourses/MyAddedCourses";
 import UpdateCourse from "../pages/UpdateCourse/UpdateCourse";
 import LoadSpinner from "../components/LoadSpinner/LoadSpinner";
 import AboutUs from "../pages/AboutUS/AboutUs";
+import DashboardErrorPage from "../pages/DashboardErrorPage/DashboardErrorPage";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import DashboardCourseDetails from "../pages/DashboardCourseDetails/DashboardCourseDetails";
 
 const router = createBrowserRouter([
   {
@@ -63,12 +66,25 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        index: false,
+        path: "*",
+        element: <DashboardErrorPage></DashboardErrorPage>,
+      },
+      {
+        index: true,
+        element: <Dashboard></Dashboard>,
+      },
+      {
         path: "/dashboard/my-enrolled",
         element: (
           <PrivateRoute>
             <MyEnrolledCourse></MyEnrolledCourse>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/dashboard/my-enrolled/:id",
+        element: <PrivateRoute><DashboardCourseDetails></DashboardCourseDetails></PrivateRoute>,
       },
       {
         path: "/dashboard/my-profile",

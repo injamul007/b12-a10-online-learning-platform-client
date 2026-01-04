@@ -22,7 +22,7 @@ const DashboardSidebar = ({ onClose }) => {
           onClick={onClose}
         >
           <MdDashboard className="text-xl" />
-          <span>My Dashboard</span>
+          <span>Dashboard Overview</span>
         </NavLink>
 
         <NavLink

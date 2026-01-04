@@ -3,11 +3,9 @@ import { Link, Outlet } from "react-router";
 import { FiX } from "react-icons/fi";
 import DashboardNavbar from "../components/DashboardNavbar/DashboardNavbar";
 import DashboardSidebar from "../components/DashboardSidebar/DashboardSidebar";
-import useAuth from "../hook/useAuth";
 
 const DashboardLayout = () => {
   const [open, setOpen] = useState(false);
-  const { user } = useAuth();
 
   return (
     <div className="min-h-screen  flex flex-col">
@@ -43,13 +41,6 @@ const DashboardLayout = () => {
         {/* Main content */}
         <main className="flex-1 p-6 lg:p-10">
           <div className="container mx-auto">
-            <div className="flex items-center justify-between gap-4 mb-6">
-              <div>
-                <h2 className="text-2xl font-bold">Dashboard</h2>
-                <p className="text-sm">Welcome back{user && `, ${user?.displayName || ""}`} — manage your courses and students here.</p>
-              </div>
-            </div>
-
             <div className="space-y-6">
               <Outlet></Outlet>
             </div>

@@ -5,6 +5,8 @@ import { IoLogOut } from "react-icons/io5";
 import { BsSun, BsMoon } from "react-icons/bs";
 import useAuth from "../../hook/useAuth";
 import MyContainer from "../MyContainer/MyContainer";
+import { FaUser } from "react-icons/fa6";
+import { MdDashboard } from "react-icons/md";
 
 const DashboardNavbar = ({ onOpenSidebar }) => {
   const { user, logOutUserFunc } = useAuth();
@@ -60,9 +62,6 @@ const DashboardNavbar = ({ onOpenSidebar }) => {
             <NavLink to="/courses" className="hover:text-white">
               Courses
             </NavLink>
-            <NavLink to="/dashboard" className="hover:text-white">
-              Dashboard
-            </NavLink>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -77,29 +76,51 @@ const DashboardNavbar = ({ onOpenSidebar }) => {
 
             {user ? (
               <>
-                <div className="hidden sm:flex items-center gap-3">
-                  <img
-                    src={
-                      user.photoURL ||
-                      "https://i.ibb.co/bN9JNsZ/portfolio-course.jpg"
-                    }
-                    alt={user.displayName || user.email}
-                    className="w-9 h-9 rounded-full border-2 border-white/10"
-                  />
-                  <div className="text-sm">
-                    <div className="font-medium text-white/90">
-                      {user.displayName || user.email.split("@")[0]}
+                <div className="dropdown dropdown-end z-50">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 h-10 border-2 border-gray-300 rounded-full">
+                      <img
+                        alt="Tailwind CSS Navbar component"
+                        referrerPolicy="no-referrer"
+                        src={
+                          user.photoURL ||
+                          "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                        }
+                      />
                     </div>
-                    <div className="text-xs text-white/60">Instructor</div>
                   </div>
+                  <ul
+                    tabIndex="-1"
+                    className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-fit p-2 shadow"
+                  >
+                    <div className=" pb-3 border-b border-b-gray-200">
+                      <li className="text-sm font-bold">{user.displayName}</li>
+                      <li className="text-xs">{user.email}</li>
+                    </div>
+                    <li className="my-1">
+                      <NavLink to={"/dashboard/my-profile"}>
+                        <FaUser size={16} /> Profile
+                      </NavLink>
+                    </li>
+                    <li className="mb-2">
+                      <NavLink to={"/dashboard"}>
+                        <MdDashboard size={20} /> Dashboard Home
+                      </NavLink>
+                    </li>
+                    <li>
+                      <button
+                        onClick={handleLogout}
+                        className="btn btn-sm my-btn"
+                      >
+                        <IoLogOut size={20} /> Logout
+                      </button>
+                    </li>
+                  </ul>
                 </div>
-
-                <button
-                  onClick={handleLogout}
-                  className="ml-2 inline-flex items-center gap-2 bg-[#059669] hover:bg-[#F97316] cursor-pointer px-3 py-2 rounded-full text-sm font-semibold"
-                >
-                  <IoLogOut /> Logout
-                </button>
               </>
             ) : (
               <></>
