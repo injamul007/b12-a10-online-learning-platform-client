@@ -19,7 +19,7 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    loginUserFunc(email, password)
+    loginUserFunc(email, password) 
       .then((result) => {
         const userData = result.user;
         setLoading(false);
@@ -87,7 +87,7 @@ const Login = () => {
         } else {
           toast.error("Something went wrong. Please try again.");
         }
-      });
+      }).finally(()=>setLoading(false))
   };
 
   const handleGoogleSignin = () => {
@@ -158,7 +158,7 @@ const Login = () => {
         } else {
           toast.error("Something went wrong. Please try again.");
         }
-      });
+      }).finally(()=>setLoading(false));
   };
 
   return (

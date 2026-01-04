@@ -114,7 +114,7 @@ const Register = () => {
         } else {
           toast.error("Something went wrong. Please try again.");
         }
-      });
+      }).finally(()=>setLoading(false));
   };
 
   const handleGoogleSignUp = () => {
@@ -184,7 +184,7 @@ const Register = () => {
         } else {
           toast.error("Something went wrong. Please try again.");
         }
-      });
+      }).finally(()=>setLoading(false));
   };
 
   return (
