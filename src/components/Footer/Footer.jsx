@@ -7,289 +7,199 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import Swal from "sweetalert2";
+import { motion } from "framer-motion";
 import navLogo from "../../assets/websiteLogo.png";
 import MyContainer from "../MyContainer/MyContainer";
-import Swal from "sweetalert2";
-import { motion } from "framer-motion"; // <-- added
+
+/* ---------------- helpers ---------------- */
+
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+/* ---------------- reusable blocks ---------------- */
+
+const FooterColumn = ({ title, children }) => (
+  <div>
+    <h4 className="text-sm font-semibold text-white mb-4 tracking-wide uppercase">
+      {title}
+    </h4>
+    <ul className="space-y-2 text-sm text-white/70">{children}</ul>
+  </div>
+);
+
+const FooterLink = ({ to, children }) => (
+  <li>
+    <Link
+      to={to}
+      className="hover:text-secondary transition-colors duration-200"
+    >
+      {children}
+    </Link>
+  </li>
+);
+
+/* ---------------- main component ---------------- */
 
 const Footer = () => {
-  const [subscribe, setSubscribe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
 
-  const dummyHandleFrom = (e) => {
+  const handleBackToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (e.target.email.value.includes("@gmail.com")) {
-      setSubscribe(!subscribe);
+
+    const email = e.target.email.value;
+
+    if (!isValidEmail(email)) {
       Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Subscribe Successful",
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: "small-swal-popup",
-        },
+        icon: "error",
+        title: "Invalid email",
+        text: "Please enter a valid email address",
       });
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      // will replace with API later
+      await new Promise((res) => setTimeout(res, 800));
+
+      setSubscribed(true);
       e.target.reset();
-      setTimeout(() => {
-        setSubscribe(false);
-      }, 1000);
+
+      Swal.fire({
+        icon: "success",
+        title: "Subscribed successfully",
+        timer: 1200,
+        showConfirmButton: false,
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
-  // motion variants
-  const fadeUp = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      variants={fadeUp}
-    >
-      <footer className="relative bg-linear-to-tl from-[#071422] via-[#071a2a]/90 to-[#021621] text-white dark:bg-linear-to-br dark:from-[#212224] dark:to-[#303233]">
-        {/* decorative top curve */}
-        <div className="absolute -top-6 left-0 right-0 pointer-events-none">
-          <svg
-            viewBox="0 0 1200 80"
-            preserveAspectRatio="none"
-            className="w-full h-8 fill-current text-[#071422] opacity-95"
-            aria-hidden
-          >
-            <path d="M0,0 C300,80 900,0 1200,80 L1200,0 L0,0 Z" />
-          </svg>
-        </div>
+    <footer className="bg-[#0b1220] text-white mt-20">
+      <MyContainer>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="py-16 grid gap-12 lg:grid-cols-12"
+        >
+          {/* ================= BRAND ================= */}
+          <div className="lg:col-span-4 space-y-5">
+            <Link to="/" className="flex items-center gap-3">
+              <img src={navLogo} alt="SkilledHub" className="w-12 h-12" />
+              <h3 className="text-2xl font-bold">
+                Skilled<span className="text-secondary">Hub</span>
+              </h3>
+            </Link>
 
-        <MyContainer>
-          <div className="px-6 py-12 lg:py-16">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              {/* Brand + description */}
-              <div className="lg:col-span-4 space-y-4">
-                <Link to="/" className="inline-flex items-center gap-3">
-                  <img
-                    src={navLogo}
-                    alt="SkilledHub"
-                    className="w-12 h-12 rounded-md"
-                  />
-                  <div>
-                    <h3 className="text-2xl font-extrabold text-primary">
-                      Skilled<span className="text-secondary">Hub</span>
-                    </h3>
-                    <p className="text-sm text-white/70 -mt-1">
-                      Craft your future — master skills with real projects &
-                      mentors.
-                    </p>
-                  </div>
-                </Link>
+            <p className="text-sm text-white/70 leading-relaxed max-w-sm">
+              Practical courses, real projects, and mentors to help you build
+              job-ready skills in development, AI and design.
+            </p>
 
-                <p className="text-sm text-white/70 max-w-sm">
-                  SkilledHub is a learning platform for hands-on courses in web
-                  development, AI, ML, design and career growth. Build
-                  portfolio-ready projects and join a community of learners.
-                </p>
-
-                <div>
-                  <p className="text-sm">Contact With Us</p>
-                  <div className="flex items-center gap-3 mt-2">
-                    <a
-                      aria-label="Facebook"
-                      href="https://www.facebook.com/"
-                      target="_blank"
-                      className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
-                    >
-                      <FaFacebookF />
-                    </a>
-                    <a
-                      aria-label="Twitter"
-                      href="https://x.com/"
-                      target="_blank"
-                      className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
-                    >
-                      <FaXTwitter />
-                    </a>
-                    <a
-                      aria-label="LinkedIn"
-                      href="https://www.linkedin.com/"
-                      target="_blank"
-                      className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
-                    >
-                      <FaLinkedinIn />
-                    </a>
-                    <a
-                      aria-label="Instagram"
-                      href="https://www.instagram.com/"
-                      target="_blank"
-                      className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
-                    >
-                      <FaInstagram />
-                    </a>
-                    <a
-                      aria-label="YouTube"
-                      href="https://www.youtube.com/"
-                      target="_blank"
-                      className="p-2 rounded-lg bg-white/6 hover:bg-accent transition"
-                    >
-                      <FaYoutube />
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Links columns */}
-              <div className="lg:col-span-5 grid grid-cols-2 sm:grid-cols-4 gap-6">
-                <div>
-                  <h4 className="text-sm font-semibold text-white/90 mb-3">
-                    Platform
-                  </h4>
-                  <ul className="space-y-2 text-sm text-white/70">
-                    <li>
-                      <Link to="/" className="hover:text-secondary transition">
-                        Home
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/courses"
-                        className="hover:text-secondary transition"
-                      >
-                        Courses
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/courses"
-                        className="hover:text-secondary transition"
-                      >
-                        Featured
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="about-us"
-                        className="hover:text-secondary transition"
-                      >
-                        About
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold text-white/90 mb-3">
-                    Instructor
-                  </h4>
-                  <ul className="space-y-2 text-sm text-white/70">
-                    <li>
-                      <Link
-                        to="/dashboard"
-                        className="hover:text-secondary transition"
-                      >
-                        Dashboard
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/dashboard/my-courses"
-                        className="hover:text-secondary transition"
-                      >
-                        My Added Courses
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/dashboard/add-course"
-                        className="hover:text-secondary transition"
-                      >
-                        Add Course
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/dashboard/my-profile"
-                        className="hover:text-secondary transition"
-                      >
-                        Profile
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="col-span-2">
-                  <h4 className="font-semibold text-sm">Contact Info</h4>
-                  <div className="mt-3 text-sm text-text/80 dark:text-base-400/80 space-y-2">
-                    <div>
-                      Email:{" "}
-                      <a
-                        href="mailto:support@microloan.example"
-                        className="text-primary dark:text-primary hover:underline"
-                      >
-                        support@skilledhub.com.bd
-                      </a>
-                    </div>
-                    <div>
-                      Phone:{" "}
-                      <a
-                        href="tel:+880123456789"
-                        className="text-primary dark:text-primary hover:underline"
-                      >
-                        +880 1234 567 890
-                      </a>
-                    </div>
-                    <div>Address: 24/B Finance Street, Dhaka, Bangladesh</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Newsletter in footer */}
-              <div className="lg:col-span-3">
-                <div className="bg-linear-to-br from-white/6 to-white/3 rounded-2xl p-5 ring-1 ring-white/6 text-center">
-                  <h4 className="text-lg font-bold text-white/95">
-                    Get course updates
-                  </h4>
-                  <p className="text-sm text-white/70 mt-1">
-                    Exclusive discounts, new courses and tips — straight to your
-                    inbox.
-                  </p>
-
-                  <form
-                    onSubmit={dummyHandleFrom}
-                    className="mt-4 flex flex-col gap-2"
-                  >
-                    <label htmlFor="footer-sub-email" className="sr-only">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="your@email.com"
-                      className="flex-1 rounded-2xl px-4 py-3 bg-transparent border border-white/10 placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-accent"
-                      required
-                    />
-                    <button type="submit" className="my-btn cursor-pointer">
-                      {subscribe ? "Subscribed" : "Subscribe"}
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-            {/* bottom section of footer */}
-            <div className="mt-10 border-t border-white/6 pt-6 flex flex-col md:flex-row items-center justify-center">
-              <div className="flex items-center gap-2">
-                <p className="text-sm text-white/70">
-                  © {new Date().getFullYear()} SkilledHub
-                </p>
-                <span className="text-sm text-white/50">•</span>
-                <p className="text-sm text-white/70">All rights reserved.</p>
-              </div>
+            {/* social */}
+            <div className="flex gap-3">
+              {[
+                { Icon: FaFacebookF, url: "https://facebook.com" },
+                { Icon: FaXTwitter, url: "https://x.com" },
+                { Icon: FaLinkedinIn, url: "https://linkedin.com" },
+                { Icon: FaInstagram, url: "https://instagram.com" },
+                { Icon: FaYoutube, url: "https://youtube.com" },
+              ].map(({ Icon, url }, i) => (
+                <a
+                  key={i}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-xl bg-white/10 hover:bg-secondary transition"
+                >
+                  <Icon size={14} />
+                </a>
+              ))}
             </div>
           </div>
-        </MyContainer>
-      </footer>
-    </motion.div>
+
+          {/* ================= LINKS ================= */}
+          <div className="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-8">
+            <FooterColumn title="Platform">
+              <FooterLink to="/">Home</FooterLink>
+              <FooterLink to="/courses">Courses</FooterLink>
+              <FooterLink to="/about-us">About</FooterLink>
+            </FooterColumn>
+
+            <FooterColumn title="Instructor">
+              <FooterLink to="/dashboard">Dashboard</FooterLink>
+              <FooterLink to="/dashboard/my-courses">My Courses</FooterLink>
+              <FooterLink to="/dashboard/add-course">Add Course</FooterLink>
+              <FooterLink to="/dashboard/my-profile">Profile</FooterLink>
+            </FooterColumn>
+
+            <FooterColumn title="Contact">
+              <li>support@skilledhub.com.bd</li>
+              <li>+880 1234 567 890</li>
+              <li>Dhaka, Bangladesh</li>
+            </FooterColumn>
+          </div>
+
+          {/* ================= NEWSLETTER ================= */}
+          <div className="lg:col-span-3">
+            <div className="bg-white/5 p-6 rounded-2xl space-y-4 ring-1 ring-white/10">
+              <h4 className="font-semibold text-lg">Course updates</h4>
+
+              <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  required
+                  className="px-4 py-3 rounded-xl bg-transparent border border-white/20 focus:outline-none focus:ring-2 focus:ring-secondary"
+                />
+
+                <button
+                  disabled={loading || subscribed}
+                  className="bg-primary hover:bg-secondary disabled:opacity-60 px-4 py-3 rounded-xl font-medium transition"
+                >
+                  {loading
+                    ? "Submitting..."
+                    : subscribed
+                      ? "Subscribed ✓"
+                      : "Subscribe"}
+                </button>
+              </form>
+
+              <p className="text-xs text-white/50">
+                No spam. Unsubscribe anytime.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* bottom */}
+        <div className="border-t border-white/10 py-6 flex items-center justify-between text-sm text-white/60">
+          <div>
+            © {new Date().getFullYear()} SkilledHub — All rights reserved.
+          </div>
+          <button
+            onClick={handleBackToTop}
+            className="px-4 py-2 rounded-lg bg-accent hover:opacity-90 transition text-white font-medium"
+          >
+            Back to Top ↑
+          </button>
+        </div>
+      </MyContainer>
+    </footer>
   );
 };
 
