@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import MyContainer from "../../MyContainer/MyContainer";
-import useAuth from "../../../hook/useAxios";
 import { motion } from "framer-motion";
+import useAuth from "./../../../hook/useAuth";
 
 const Banner = () => {
   const { user } = useAuth();
@@ -45,14 +45,19 @@ const Banner = () => {
       transition={{ duration: 0.6 }}
       className="relative w-full min-h-[60vh] max-h-[80vh] overflow-hidden"
     >
-    
-      <div className="w-full lg:h-[calc(100%-76px)] lg:pt-19 md:pt-19 pt-16 relative
-                      md:h-[calc(100%-76px)] h-[calc(100%-76px)]">
-        <div className="w-full h-full bg-linear-to-br from-primary to-accent text-white flex items-center relative
-                        md:flex-col md:justify-center md:gap-6">
+      <div
+        className="w-full lg:h-[calc(100%-76px)] lg:pt-19 md:pt-19 pt-16 relative
+                      md:h-[calc(100%-76px)] h-[calc(100%-76px)]"
+      >
+        <div
+          className="w-full h-full bg-linear-to-br from-primary to-accent text-white flex items-center relative
+                        md:flex-col md:justify-center md:gap-6"
+        >
           <MyContainer>
-            <div className="flex flex-col-reverse lg:flex-row items-center gap-10 py-10 lg:py-14
-                            md:flex-col md:gap-6">
+            <div
+              className="flex flex-col-reverse lg:flex-row items-center gap-10 py-10 lg:py-14
+                            md:flex-col md:gap-6"
+            >
               {/* Text */}
               <div className="flex-1 text-center lg:text-left md:text-center">
                 <h1 className="text-2xl md:text-3xl lg:text-5xl font-extrabold leading-tight mb-4">

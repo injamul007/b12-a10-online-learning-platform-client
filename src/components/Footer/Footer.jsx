@@ -86,7 +86,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#0b1220] text-white mt-20">
+    <footer className="bg-[#0b1220] text-white">
       <MyContainer>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
