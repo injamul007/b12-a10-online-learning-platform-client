@@ -161,7 +161,7 @@ const Navbar = () => {
               <ClockLoader color="#059669" size={34} />
             ) : user ? (
               <>
-                <div className="dropdown dropdown-end z-50">
+                <div className="dropdown dropdown-end z-50 border border-transparent hover:border-primary rounded-3xl duration-200">
                   <div
                     tabIndex={0}
                     role="button"
