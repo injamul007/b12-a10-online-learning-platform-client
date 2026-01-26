@@ -169,7 +169,7 @@ const Footer = () => {
 
                 <button
                   disabled={loading || subscribed}
-                  className="bg-primary hover:bg-secondary disabled:opacity-60 px-4 py-3 rounded-xl font-medium transition"
+                  className="bg-primary hover:bg-primary/80 disabled:opacity-60 px-4 py-3 rounded-xl font-medium transition cursor-pointer"
                 >
                   {loading
                     ? "Submitting..."
@@ -193,7 +193,7 @@ const Footer = () => {
           </div>
           <button
             onClick={handleBackToTop}
-            className="px-4 py-2 rounded-lg bg-accent hover:opacity-90 transition text-white font-medium"
+            className="px-4 py-2 rounded-lg bg-accent hover:opacity-90 transition text-white font-medium cursor-pointer"
           >
             Back to Top ↑
           </button>
