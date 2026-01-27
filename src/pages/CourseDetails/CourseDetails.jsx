@@ -6,7 +6,6 @@ import {
   FiDollarSign,
   FiChevronLeft,
   FiAward,
-  FiUsers,
 } from "react-icons/fi";
 import useAxios from "../../hook/useAxios";
 import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
@@ -61,7 +60,6 @@ export default function CourseDetails() {
     axiosInstanceSecure
       .post("/my-enrolled", finalCourseData)
       .then((data) => {
-        console.log(data.data);
         if (data.data.insertedId) {
           Swal.fire({
             position: "top-end",
