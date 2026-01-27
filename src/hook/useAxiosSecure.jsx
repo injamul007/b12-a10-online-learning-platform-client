@@ -10,8 +10,11 @@ const useAxiosSecure = () => {
   const { user } = useAuth();
 
   //? set token in the header for all the api call using axiosSecure hook
-  axiosInstanceSecure.interceptors.request.use((config) => {
-    config.headers.authorization = `Bearer ${user.accessToken}`;
+  axiosInstanceSecure.interceptors.request.use(async (config) => {
+    if (user) {
+      const token = await user.getIdToken();
+      config.headers.authorization = `Bearer ${token}`;
+    }
     return config;
   });
 
