@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { FiClock, FiTag, FiDollarSign, FiChevronLeft } from "react-icons/fi";
+import {
+  FiClock,
+  FiTag,
+  FiDollarSign,
+  FiChevronLeft,
+  FiAward,
+} from "react-icons/fi";
 import useAxios from "../../hook/useAxios";
 import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
 import MyContainer from "../../components/MyContainer/MyContainer";
 import Swal from "sweetalert2";
 import { HiOutlineDocumentText } from "react-icons/hi";
+import { motion } from "framer-motion";
 
 export default function DashboardCourseDetails() {
   const { id } = useParams();
@@ -31,82 +38,297 @@ export default function DashboardCourseDetails() {
   if (loading) return <LoadSpinner></LoadSpinner>;
 
   return (
-    <MyContainer className={'pt-18'}>
+    <>
       <title>SkilledHub || Dashboard Course Details</title>
-      <div className="px-4 py-10">
-        <Link
-          to="/dashboard/my-enrolled"
-          className="inline-flex items-center gap-2 text-sm text-[#059669] mb-6 hover:text-orange-600"
-        >
-          <FiChevronLeft /> Back to Courses
-        </Link>
+      {/* Hero Section with Image */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="relative h-96 md:h-[450px] overflow-hidden bg-linear-to-r from-slate-900 to-slate-800"
+      >
+        <img
+          src={course?.imageURL}
+          alt={course?.title}
+          className="w-full h-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent"></div>
 
-        <div className="bg-linear-to-br from-white/3 to-white/2 rounded-2xl overflow-hidden shadow-2xl dark:bg-[#212224]">
-          <div className="md:flex">
-            {/* Left side image */}
-            <div className="md:w-1/2 relative">
-              <img
-                src={course?.imageURL}
-                alt={course?.title}
-                className="w-full lg:h-90 object-cover"
-              />
+        {/* Back Button */}
+        <MyContainer>
+          <div className="absolute top-6 left-0 right-0">
+            <Link
+              to="/dashboard/my-enrolled"
+              className="inline-flex items-center gap-2 text-sm text-white hover:text-secondary transition-colors duration-200 font-medium"
+            >
+              <FiChevronLeft size={18} /> Back to My Courses
+            </Link>
+          </div>
+        </MyContainer>
 
-              {course.isFeatured && (
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#F97316] text-white text-xs font-semibold shadow">
-                  Featured
-                </div>
-              )}
+        {/* Featured Badge */}
+        {course.isFeatured && (
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="absolute top-6 right-6 px-4 py-2 rounded-full bg-secondary text-white text-xs font-bold shadow-lg"
+          >
+            ⭐ Featured
+          </motion.div>
+        )}
+      </motion.div>
 
-              <div className="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-3 py-2 rounded-lg flex items-center gap-3">
+      <MyContainer className="py-12 md:py-16">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="md:col-span-2"
+          >
+            {/* Course Title */}
+            <div className="mb-8">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+                {course?.title}
+              </h1>
+              <p className="text-gray-600 dark:text-gray-400 text-lg">
+                Continue learning and complete your journey with this course
+              </p>
+            </div>
+
+            {/* Instructor Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-linear-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-xl p-6 mb-8 border border-slate-200 dark:border-slate-700"
+            >
+              <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-4 uppercase tracking-wide">
+                Course Instructor
+              </p>
+              <div className="flex items-center gap-4">
                 <img
                   src={course?.instructor?.photo}
                   alt={course?.instructor?.name}
-                  className="w-10 h-10 rounded-full border-2 border-white"
+                  className="w-16 h-16 rounded-full border-3 border-secondary"
                 />
-                <div className="text-white text-sm">
-                  <div className="font-semibold">{course.instructor?.name}</div>
-                  <div className="text-xs opacity-80">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    {course.instructor?.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
                     {course?.instructor?.email}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Key Metrics */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
+            >
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700 text-center">
+                <div className="flex justify-center mb-2 text-secondary">
+                  <FiClock size={24} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {course?.durationInWeeks}
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                  Weeks
+                </p>
+              </div>
+
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700 text-center">
+                <div className="flex justify-center mb-2 text-secondary">
+                  <HiOutlineDocumentText size={24} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {course?.lessons}
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                  Lessons
+                </p>
+              </div>
+
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700 text-center">
+                <div className="flex justify-center mb-2 text-secondary">
+                  <FiTag size={24} />
+                </div>
+                <p className="text-lg font-bold text-gray-900 dark:text-white truncate">
+                  {course?.category}
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                  Category
+                </p>
+              </div>
+
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700 text-center">
+                <div className="flex justify-center mb-2 text-secondary">
+                  <FiDollarSign size={24} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {course?.price ? `$${course?.price}` : "Free"}
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                  Price
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Description */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                Course Overview
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
+                {course?.description}
+              </p>
+
+              <div className="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 rounded p-4 mb-8">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold text-green-600 dark:text-green-400">
+                    ✓ Already Enrolled
+                  </span>{" "}
+                  - You have access to all course materials
+                </p>
+              </div>
+
+              <div className="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-secondary rounded p-4">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold text-secondary">
+                    Created on:
+                  </span>{" "}
+                  {course?.createdAt}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Sidebar - Status Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="md:col-span-1"
+          >
+            <div className="sticky top-20 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-8">
+              {/* Enrollment Status */}
+              <div className="text-center mb-8">
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    className="w-8 h-8 text-green-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm font-semibold mb-2">
+                  ENROLLMENT STATUS
+                </p>
+                <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  Successfully Enrolled
+                </p>
+              </div>
+
+              {/* Enrollment Info Summary */}
+              <div className="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-700">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
+                    <FiClock className="text-secondary" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      Duration
+                    </p>
+                    <p className="font-semibold text-gray-900 dark:text-white">
+                      {course?.durationInWeeks} weeks
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
+                    <HiOutlineDocumentText
+                      className="text-secondary"
+                      size={20}
+                    />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      Content
+                    </p>
+                    <p className="font-semibold text-gray-900 dark:text-white">
+                      {course?.lessons} lessons
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
+                    <FiTag className="text-secondary" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      Category
+                    </p>
+                    <p className="font-semibold text-gray-900 dark:text-white">
+                      {course?.category}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
+                    <FiAward className="text-secondary" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      Level
+                    </p>
+                    <p className="font-semibold text-gray-900 dark:text-white">
+                      {course.isFeatured ? "Advanced" : "Beginner"}
+                    </p>
                   </div>
                 </div>
               </div>
+
+              {/* Action Button */}
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                disabled
+                className="w-full mt-8 bg-green-500/20 hover:bg-green-500/30 text-green-600 dark:text-green-400 font-bold py-3 px-6 rounded-xl cursor-default text-lg border border-green-300 dark:border-green-700"
+              >
+                ✓ Enrolled
+              </motion.button>
+
+              <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
+                You have full access to this course and all its materials
+              </p>
             </div>
-
-            {/* Right side details */}
-            <div className="md:w-1/2 p-6 md:p-8">
-              <h1 className="text-2xl md:text-3xl font-extrabold mb-3">
-                {course?.title}
-              </h1>
-
-              <div className="flex items-center flex-wrap gap-2 lg:gap-4 text-sm mb-4">
-                <div className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-lg border text-primary">
-                  <FiClock /> <span>{course?.durationInWeeks} Weeks</span>
-                </div>
-                <div className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-lg border text-primary">
-                  <HiOutlineDocumentText className="text-lg text-primary" /> <span>{course?.lessons} Lessons</span>
-                </div>
-                <div className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-lg border text-primary">
-                  <FiTag /> <span>{course?.category}</span>
-                </div>
-                <div className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-lg border text-primary">
-                  <FiDollarSign />{" "}
-                  <span className="font-semibold">
-                    {course?.price && `Paid`}
-                  </span>
-                </div>
-              </div>
-
-              <p className="text-sm mb-5">Created at: {course?.createdAt}</p>
-
-              <p className="mb-5">{course?.description}</p>
-
-              <div className="flex items-center gap-4">
-                  <button disabled className="btn disabled:text-green-600 disabled:dark:text-green-600">Successfully Enrolled</button>
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </MyContainer>
+      </MyContainer>
+    </>
   );
 }
