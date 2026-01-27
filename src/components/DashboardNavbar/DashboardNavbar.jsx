@@ -125,6 +125,9 @@ const DashboardNavbar = ({ onOpenSidebar }) => {
             ) : (
               <></>
             )}
+            <button onClick={handleLogout} className="btn my-btn lg:flex md:flex hidden">
+              <IoLogOut size={20} /> Logout
+            </button>
           </div>
         </div>
       </MyContainer>
