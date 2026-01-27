@@ -27,7 +27,7 @@ const MyAddedCourses = () => {
         .finally(() => {
           setLoading(false);
         });
-    }, 1000);
+    }, 600);
   }, [user, axiosInstanceSecure]);
 
   const handleDelete = (id) => {
@@ -68,13 +68,19 @@ const MyAddedCourses = () => {
 
       <MyContainer>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-          {myCourse.map((course) => (
-            <MyCourseCard
-              key={course._id}
-              course={course}
-              handleDelete={handleDelete}
-            ></MyCourseCard>
-          ))}
+          {myCourse.length === 0 ? (
+            <p className="text-center text-2xl col-span-full text-gray-400">
+              No course added yet
+            </p>
+          ) : (
+            myCourse.map((course) => (
+              <MyCourseCard
+                key={course._id}
+                course={course}
+                handleDelete={handleDelete}
+              ></MyCourseCard>
+            )) || "no course card added yet"
+          )}
         </div>
       </MyContainer>
     </div>
