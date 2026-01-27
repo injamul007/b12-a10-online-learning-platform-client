@@ -7,10 +7,11 @@ import { AiOutlineUser, AiOutlineUnorderedList } from "react-icons/ai";
 const DashboardSidebar = ({ onClose }) => {
   const baseLink =
     "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition hover:bg-white/5";
-  const activeClass = "bg-white/6 text-[#059669] font-semibold ring-1 ring-[#059669]/10";
+  const activeClass =
+    "bg-white/6 text-[#059669] font-semibold ring-1 ring-[#059669]/10";
 
   return (
-    <aside className="bg-[#071422] text-white lg:w-72 w-52 h-full p-2 lg:p-4 lg:block">
+    <aside className="sticky top-16 bg-[#071422] text-white lg:w-72 w-52 h-screen overflow-y-auto p-2 lg:p-4 lg:block">
       <title>SkilledHub || Dashboard</title>
       <nav className="space-y-3">
         <div className="text-xs text-white/60 uppercase mb-2">Dashboard</div>
@@ -18,7 +19,9 @@ const DashboardSidebar = ({ onClose }) => {
         <NavLink
           to="/dashboard"
           end
-          className={({ isActive }) => `${baseLink} ${isActive ? activeClass : "text-white/90"}`}
+          className={({ isActive }) =>
+            `${baseLink} ${isActive ? activeClass : "text-white/90"}`
+          }
           onClick={onClose}
         >
           <MdDashboard className="text-xl" />
@@ -27,7 +30,9 @@ const DashboardSidebar = ({ onClose }) => {
 
         <NavLink
           to="/dashboard/my-enrolled"
-          className={({ isActive }) => `${baseLink} ${isActive ? activeClass : "text-white/90"}`}
+          className={({ isActive }) =>
+            `${baseLink} ${isActive ? activeClass : "text-white/90"}`
+          }
           onClick={onClose}
         >
           <AiOutlineUnorderedList className="text-xl" />
@@ -36,7 +41,9 @@ const DashboardSidebar = ({ onClose }) => {
 
         <NavLink
           to="/dashboard/add-course"
-          className={({ isActive }) => `${baseLink} ${isActive ? activeClass : "text-white/90"}`}
+          className={({ isActive }) =>
+            `${baseLink} ${isActive ? activeClass : "text-white/90"}`
+          }
           onClick={onClose}
         >
           <BiBookAdd className="text-xl" />
@@ -45,7 +52,9 @@ const DashboardSidebar = ({ onClose }) => {
 
         <NavLink
           to="/dashboard/my-courses"
-          className={({ isActive }) => `${baseLink} ${isActive ? activeClass : "text-white/90"}`}
+          className={({ isActive }) =>
+            `${baseLink} ${isActive ? activeClass : "text-white/90"}`
+          }
           onClick={onClose}
         >
           <BiBookAlt className="text-xl" />
@@ -56,7 +65,9 @@ const DashboardSidebar = ({ onClose }) => {
 
         <NavLink
           to="/dashboard/my-profile"
-          className={({ isActive }) => `${baseLink} ${isActive ? activeClass : "text-white/90"}`}
+          className={({ isActive }) =>
+            `${baseLink} ${isActive ? activeClass : "text-white/90"}`
+          }
           onClick={onClose}
         >
           <AiOutlineUser className="text-xl" />
@@ -65,6 +76,6 @@ const DashboardSidebar = ({ onClose }) => {
       </nav>
     </aside>
   );
-}
+};
 
 export default DashboardSidebar;
