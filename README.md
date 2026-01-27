@@ -24,7 +24,7 @@ It provides a seamless and secure environment for instructors to manage their co
 - Hero banner highlighting featured courses  
 - Category-wise course filtering  
 - Popular & Latest Courses section  
-- Smooth animations with AOS and Framer Motion  
+- Smooth animations with Framer Motion  
 - Responsive layout for mobile, tablet, and desktop  
 
 ### 🔐 Authentication
@@ -35,12 +35,10 @@ It provides a seamless and secure environment for instructors to manage their co
 - Secure access — only logged-in users can add or view private content  
 
 ### 📊 Dashboard System
-- **Dynamic Dashboards** for both **Learners** and **Instructors**
+- **Dedicated**  **Learners**  **Dashboards** with a Single-Role System
   - My Enrolled Courses  
   - Add New Course  
   - My Added Courses  
-- Role-based route protection  
-- Real-time data updates using React Query  
 
 ### 🧾 CRUD Functionalities
 - Add, Edit, Update, and Delete courses with ease  
@@ -49,7 +47,7 @@ It provides a seamless and secure environment for instructors to manage their co
 
 ### 🎨 UI & Design
 - Fully Responsive and Modern UI  
-- Built with **Tailwind CSS**, **AOS Animations**, and **Framer Motion**  
+- Built with **Tailwind CSS** and **Framer Motion**  
 - Toast notifications using **SweetAlert2** for user feedback  
 - Unique page titles and 404 (Not Found) page  
 - Clean design focusing on accessibility and user experience  
@@ -60,12 +58,12 @@ It provides a seamless and secure environment for instructors to manage their co
 
 | Category | Technologies |
 |-----------|---------------|
-| **Frontend** | React.js, Tailwind CSS, React Router, TanStack Query |
+| **Frontend** | React.js, Tailwind CSS, React Router |
 | **Backend** | Node.js, Express.js, MongoDB |
 | **Authentication** | Firebase (Email/Password, Google Sign-In) |
 | **Image Upload** | imgbb API |
 | **Hosting** | Netlify (Client), Vercel (Server) |
-| **Utilities & Tools** | Axios, Framer Motion, AOS, SweetAlert2 |
+| **Utilities & Tools** | Axios, Framer Motion, SweetAlert2 |
 
 ---
 
@@ -80,7 +78,6 @@ It provides a seamless and secure environment for instructors to manage their co
 | **tailwindcss** | Utility-first CSS framework |
 | **DaisyUI** | Tailwind CSS - Component - For Designing |
 | **framer-motion** | Page transitions and animations |
-| **aos** | Scroll animations |
 | **sweetalert2** | Custom toast notifications |
 | **React-Toastify** | Toast notifications |
 | **react-icons** | Beautiful icons for UI enhancement |
