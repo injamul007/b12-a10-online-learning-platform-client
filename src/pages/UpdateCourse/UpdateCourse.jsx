@@ -17,7 +17,8 @@ const UpdateCourse = () => {
       title: e.target.title.value,
       imageURL: e.target.imageURL.value,
       price: Number(e.target.price.value),
-      duration: e.target.duration.value,
+      durationInWeeks: Number(e.target.durationInWeeks.value),
+      lessons: Number(e.target.lessons.value),
       category: e.target.category.value,
       description: e.target.description.value,
       isFeatured: isFeaturedStr === "true",
@@ -120,8 +121,7 @@ const UpdateCourse = () => {
             ></textarea>
           </div>
 
-          {/* Image URL & Price */}
-          <div className="flex items-center gap-2">
+          {/* Image URL */}
             <div>
               <label className="label font-medium">Image URL</label>
               <input
@@ -133,7 +133,10 @@ const UpdateCourse = () => {
                 placeholder="https://example.com/image.jpg"
               />
             </div>
-            <div>
+
+            {/* Price & isFeatured */}
+            <div className="flex items-center gap-2">
+              <div>
               <label className="label font-medium">Price</label>
               <input
                 defaultValue={course.price}
@@ -142,21 +145,6 @@ const UpdateCourse = () => {
                 required
                 className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
                 placeholder="$123"
-              />
-            </div>
-          </div>
-
-          {/* Duration & IsFeatured */}
-          <div className="flex items-center gap-2">
-            <div>
-              <label className="label font-medium">Duration</label>
-              <input
-                defaultValue={course.duration}
-                type="text"
-                name="duration"
-                required
-                className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
-                placeholder="Duration"
               />
             </div>
             <div>
@@ -168,6 +156,32 @@ const UpdateCourse = () => {
                 required
                 className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
                 placeholder="Boolean"
+              />
+            </div>
+            </div>
+
+          {/* Duration & lesson */}
+          <div className="flex items-center gap-2">
+            <div>
+              <label className="label font-medium">Duration In Weeks</label>
+              <input
+                defaultValue={course.durationInWeeks}
+                type="text"
+                name="durationInWeeks"
+                required
+                className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
+                placeholder="Duration In Weeks"
+              />
+            </div>
+            <div>
+              <label className="label font-medium">Lessons</label>
+              <input
+                defaultValue={course.lessons}
+                type="text"
+                name="lessons"
+                required
+                className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
+                placeholder="lessons"
               />
             </div>
           </div>
