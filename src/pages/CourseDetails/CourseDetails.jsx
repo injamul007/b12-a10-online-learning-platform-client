@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import {
   FiClock,
   FiTag,
@@ -23,6 +23,7 @@ export default function CourseDetails() {
   const [loading, setLoading] = useState(false);
   const axiosInstanceSecure = useAxiosSecure();
   const { user } = useAuth();
+  const navigate = useNavigate()
 
   useEffect(() => {
     setLoading(true);
@@ -71,6 +72,7 @@ export default function CourseDetails() {
               popup: "small-swal-popup",
             },
           });
+          setTimeout(()=> {navigate('/dashboard/my-enrolled')},1200)
         }
       })
       .catch((error) => console.log(error.message));
