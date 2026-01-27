@@ -6,7 +6,7 @@ import useAuth from "../../hook/useAuth";
 import DashboardCourseCard from "../DashboardCourseCard/DashboardCourseCard";
 
 const MyEnrolledCourse = () => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const axiosInstanceSecure = useAxiosSecure();
   const [myCourse, setMyCourse] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -24,19 +24,32 @@ const MyEnrolledCourse = () => {
         .finally(() => {
           setLoading(false);
         });
-    }, 1000);
+    }, 600);
   }, [user, axiosInstanceSecure]);
 
-  if(loading) return <LoadSpinner></LoadSpinner>
+  if (loading) return <LoadSpinner></LoadSpinner>;
 
   return (
     <div>
       <title>SkilledHub || My Enrolled Course</title>
-      <h2 className="text-4xl text-center font-bold mb-10">My Enrolled Course</h2>
+      <h2 className="text-4xl text-center font-bold mb-10">
+        My Enrolled Course
+      </h2>
 
       <MyContainer>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-          {myCourse.map((course) => <DashboardCourseCard key={course._id} course={course}></DashboardCourseCard>)}
+          {myCourse.length === 0 ? (
+            <p className="text-center text-2xl col-span-full text-gray-400">
+              No Course Enrolled Yet
+            </p>
+          ) : (
+            myCourse.map((course) => (
+              <DashboardCourseCard
+                key={course._id}
+                course={course}
+              ></DashboardCourseCard>
+            ))
+          )}
         </div>
       </MyContainer>
     </div>
