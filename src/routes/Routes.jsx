@@ -8,7 +8,6 @@ import ErrorPage from "../pages/Error404Page/ErrorPage";
 import DashboardLayout from "../layout/DashboardLayout";
 import MyEnrolledCourse from "../pages/MyEnrolledCourse/MyEnrolledCourse";
 import PrivateRoute from "./PrivateRoute";
-import Settings from "../pages/Settings/Settings";
 import Profile from "../pages/Profile/Profile";
 import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import AddCourse from "../pages/AddCourse/AddCourse";
@@ -120,7 +119,7 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <LoadSpinner></LoadSpinner>,
         loader: ({ params }) =>
           fetch(
-            `https://skilledhub-online-learning-platform.vercel.app/courses/${params.id}`
+            `${import.meta.env.VITE_SERVER_API_URL}/courses/${params.id}`
           ),
       },
       {
@@ -128,14 +127,6 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UpdateProfile></UpdateProfile>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/dashboard/settings",
-        element: (
-          <PrivateRoute>
-            <Settings></Settings>
           </PrivateRoute>
         ),
       },

@@ -62,15 +62,6 @@ const DashboardSidebar = ({ onClose }) => {
           <AiOutlineUser className="text-xl" />
           <span>Profile</span>
         </NavLink>
-
-        <NavLink
-          to="/dashboard/settings"
-          className={({ isActive }) => `${baseLink} ${isActive ? activeClass : "text-white/90"}`}
-          onClick={onClose}
-        >
-          <span className=" w-5 h-5 border rounded-sm text-xs flex items-center justify-center">⚙</span>
-          <span>Settings</span>
-        </NavLink>
       </nav>
     </aside>
   );
