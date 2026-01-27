@@ -93,7 +93,7 @@ export default function CourseDetails() {
         <img
           src={course?.imageURL}
           alt={course?.title}
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full opacity-60"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent"></div>
 
