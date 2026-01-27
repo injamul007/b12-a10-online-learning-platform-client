@@ -22,6 +22,7 @@ const Courses = () => {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [filter, setFilter] = useState("");
   const [priceRange, setPriceRange] = useState("");
+  const [sortValue, setSortValue] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -29,7 +30,7 @@ const Courses = () => {
       const skip = currentPage * limit;
       axiosInstance
         .get(
-          `/courses?limit=${limit}&skip=${skip}&sort=${sort}&order=${order}&search=${debouncedSearch}&filter=${filter}&price=${priceRange}`
+          `/courses?limit=${limit}&skip=${skip}&sort=${sort}&order=${order}&search=${debouncedSearch}&filter=${filter}&price=${priceRange}`,
         )
         .then((data) => {
           setCoursesData(data.data.result);
@@ -56,6 +57,7 @@ const Courses = () => {
 
   const handleSorting = (e) => {
     const sortText = e.target.value;
+    setSortValue(sortText);
     setSort(sortText.split("-")[0]);
     setOrder(sortText.split("-")[1]);
   };
@@ -154,10 +156,12 @@ const Courses = () => {
             </label>
           </div>
           <div>
-            <select onChange={handleSorting} className="select">
-              <option selected disabled>
-                Sort by <span className="text-xs">P / D</span>
-              </option>
+            <select
+              onChange={handleSorting}
+              value={sortValue}
+              className="select"
+            >
+              <option value="">Sort by P / D</option>
               <option value={"price-desc"}>Price: High - Low</option>
               <option value={"price-asc"}>Price: Low - High</option>
               <option value={"durationInWeeks-desc"}>
